@@ -22,7 +22,7 @@ h2 {
 }
 
 input {
-    @apply py-2 border-none border-b-gray-800 bg-transparent border-b-2 outline-none focus:border-b-gray-500;
+    @apply py-2 border-b-gray-500 bg-transparent border-solid border-b outline-none focus:border-b-gray-300;
 }
 
 button {
