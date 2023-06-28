@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import { newOrderRequestBody } from '../shared/types';
 const app = express();
 const port = 3000
 
@@ -11,7 +12,7 @@ app.get('/api', (req, res) => {
 })
 
 app.get('/api/products', (req, res) => {
-    res.send([
+    res.json([
         {
             name: 'Apfel',
             type: 'Frucht',
@@ -29,8 +30,12 @@ app.get('/api/products', (req, res) => {
 })
 
 app.post('/api/orders', (req, res) => {
-    const { name, wohnhaus, datum } = req.body;
+    const { name, wohnhaus, datum } = req.body as newOrderRequestBody;
   
+    if (!name || !wohnhaus || !datum) {
+        res.status(400).json({ message: "Bad Request"});
+        return;
+    }
     // TODO: Perform any necessary validation or processing of the order data
   
     // TODO: Save the order to your database or perform any other required actions
