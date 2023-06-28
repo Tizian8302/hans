@@ -1,0 +1,18 @@
+<h2>These are all the products from the backend</h2>
+
+<table>
+    <thead>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Manufacturer</th>
+        <th>QuantityType</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let product of products">
+            <td>{{product.name}}</td>
+            <td>{{product.price}}</td>
+            <td>{{product.manufacturer}}</td>
+            <td>{{product.quantityType}}</td>
+        </tr>
+    </tbody>
+</table>
