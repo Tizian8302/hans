@@ -1,10 +1,10 @@
-import express, { static } from 'express';
+import express from 'express';
 const app = express()
 const port = 3000
 import cors from 'cors';
 
 app.use(cors())
-app.use(static('public'))
+app.use(express.static('public'))
 
 app.get('/api', (req, res) => {
   res.send('Hello World!')
