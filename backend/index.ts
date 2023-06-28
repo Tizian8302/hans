@@ -9,10 +9,9 @@ const port = 3000
 
 app.use(cors())
 app.use(express.static('public'))
+app.use(express.json())
 
-const db = new JsonDB(new Config("../data/hansDB", true, false, '/'))
-
-
+const db = new JsonDB(new Config("../data/hansDB", true, true, '/'))
 
 app.get('/api', (req, res) => {
   res.send('Hello World!')
@@ -37,26 +36,39 @@ app.get('/api/products', (req, res) => {
 })
 
 app.post('/api/orders', async (req, res) => {
+    console.log("body in post orders ", req.body)
     const { name, wohnhaus, datum } = req.body as newOrderRequestBody;
-  
-    // TODO: Perform any necessary validation or processing of the order data
     if (!name || !wohnhaus || !datum) {
         res.status(400).json({ message: "Bad Request"});
         return;
     }
-  
+
+    const products: [] = []
     const dbentry = {
         id: crypto.randomUUID(),
         name,
         wohnhaus,
         datum,
-        Array
+        products
     }
-    // TODO: Save the order to your database or perform any other required actions
-    // Return a success response
-    res.status(201).json({ message: 'Order created successfully' });
-});
+
+    console.log(dbentry)
+    
+    await db.push(`/orders[]`, dbentry)
+    
+    res.status(201).json(await db.getData('/orders'));
+})
   
+app.get('/api/orders', async (req, res) => {
+    res.send(await db.getData('/orders'))
+})
+
+app.delete('/api/order/:id', async(req, res) => {
+    console.log('im here', req.params.id)
+    await db.delete('/orders[' + await db.getIndex('/orders', req.params.id) + ']')
+    res.status(200).json(await db.getData('/orders')); // <- sie gönd devo us dass du nüt zrugg gisch wil normal macht ä api das au nöd
+})
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })

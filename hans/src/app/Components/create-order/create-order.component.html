@@ -1,23 +1,47 @@
 <h2>Create Order</h2>
 
-<div>
-  <label for="name">Name:</label>
+<div class="flex flex-row gap-4">
+  <label class="w-24" for="name">Name:</label>
   <input type="text" id="name" [(ngModel)]="name" placeholder="Enter name">
 </div>
 
-<div>
-  <label for="wohnhaus">Wohnhaus:</label>
+<div class="flex flex-row gap-4">
+  <label class="w-24" for="wohnhaus">Wohnhaus:</label>
   <input type="text" id="wohnhaus" [(ngModel)]="wohnhaus" placeholder="Enter Wohnhaus">
 </div>
 
-<div>
-  <label for="datum">Datum:</label>
+<div class="flex flex-row gap-4">
+  <label class="w-24" for="datum">Datum:</label>
   <input type="text" id="datum" [(ngModel)]="datum" placeholder="Enter Datum">
 </div>
 
-<div>
-  <label for="passwort">Passwort:</label>
+<div class="flex flex-row gap-4">
+  <label class="w-24" for="passwort">Passwort:</label>
   <input type="password" id="passwort" [(ngModel)]="passwort" placeholder="Enter Passwort">
 </div>
 
 <button (click)="createOrder()">Submit</button>
+
+
+<h2>These are all the orders from the backend</h2>
+
+<table>
+    <thead>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Wohnhaus</th>
+        <th>Datum</th>
+        <th>Produkte</th>
+        <th>Löschen</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let order of orders">
+            <td>{{order.id}}</td>
+            <td>{{order.name}}</td>
+            <td>{{order.wohnhaus}}</td>
+            <td>{{order.datum}}</td>
+            <td>{{order.products}}</td>
+            <td><button (click)="deleteOrder(order.id)">Delete</button></td>
+        </tr>
+    </tbody>
+</table>

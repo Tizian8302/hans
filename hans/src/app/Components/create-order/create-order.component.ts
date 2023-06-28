@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { OrderService } from '../Services/order.service';
+import { Order, OrderService } from '../Services/order.service';
 
 @Component({
   selector: 'app-create-order',
@@ -7,10 +7,13 @@ import { OrderService } from '../Services/order.service';
   styleUrls: ['./create-order.component.css']
 })
 export class CreateOrderComponent {
+
   name!: string;
   wohnhaus!: string;
   datum!: string;
   passwort!: string;
+
+  orders: Order[] = [] 
 
   constructor(private orderService: OrderService) {}
 
@@ -26,6 +29,14 @@ export class CreateOrderComponent {
       return
     }
 
-    this.orderService.createOrder(newOrder)
+    this.orderService.createOrder(newOrder).subscribe(orders => this.orders = orders)
+  }
+
+  deleteOrder(id: string) {
+    this.orderService.deleteOrder(id).subscribe(orders => this.orders = orders)
+  }
+
+  ngOnInit(): void {
+    this.orderService.getOrders().subscribe(orders => this.orders = orders)
   }
 }

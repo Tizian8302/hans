@@ -1,1 +1,30 @@
-/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(/assets/fonts/roboto.woff2) format("woff2")
+}
+
+* {
+    margin:0;
+    box-sizing:border-box;
+    padding:0;
+    font-family: Roboto, sans-serif
+}
+
+h2 {
+    @apply text-2xl my-4;
+}
+
+input {
+    @apply py-2 border-none border-b-gray-800 bg-transparent border-b-2 outline-none focus:border-b-gray-500;
+}
+
+button {
+    @apply py-2 px-5 bg-gray-200 rounded-md hover:bg-gray-300 active:bg-gray-400;
+}
