@@ -1,3 +1,2 @@
 node-modules
-index.js
-../shared/types.js
+*.js
