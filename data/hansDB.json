@@ -1,0 +1,37 @@
+{
+    "products": [
+        {
+            "id": 1,
+            "name": "Apfel",
+            "type": "Frucht",
+            "price": 12,
+            "manufacturer": "Migros",
+            "quantityType": "Stk"
+        }
+    ],
+    "orders": [
+        {
+            "id": 1,
+            "name": "Mike",
+            "wohnhaus": "Wohnhaus 1",
+            "datum": "heute",
+            "products": [
+                1
+            ]
+        },
+        {
+            "id": "0853ec49-9681-4f9d-95c6-6defa8d54823",
+            "name": "sdf",
+            "wohnhaus": "sdf",
+            "datum": "sdf",
+            "products": []
+        },
+        {
+            "id": "a75b4836-6265-4eb0-b324-692bf82341d6",
+            "name": "sdf",
+            "wohnhaus": "sdf",
+            "datum": "sdf",
+            "products": []
+        }
+    ]
+}
