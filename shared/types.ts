@@ -5,6 +5,7 @@ export type newOrderRequestBody = {
 }
 
 export type newProductRequestBody = {
+    id: string,
     name: string,
     type: string,
     price: number,

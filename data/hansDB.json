@@ -1,20 +1,28 @@
 {
     "products": [
         {
-            "id": 1,
-            "name": "Apfel",
-            "type": "Frucht",
-            "price": 12,
-            "manufacturer": "Migros",
+            "id": "b6693472-9561-4e04-af44-0afee5411760",
+            "name": "test",
+            "type": "test",
+            "price": "30",
+            "manufacturer": "Coop",
             "quantityType": "Stk"
         },
         {
-            "id": 2,
-            "name": "Birne",
-            "type": "Frucht",
-            "price": 12,
+            "id": "b6693472-9561-4e04-af44-0afee5411760",
+            "name": "test",
+            "type": "test",
+            "price": "1",
             "manufacturer": "Migros",
-            "quantityType": "Stk"
+            "quantityType": "Kg"
+        },
+        {
+            "id": "bd3ac241-0159-481c-9391-7e5366ada27f",
+            "name": "sdf",
+            "type": "sdf",
+            "price": "15",
+            "manufacturer": "Migros",
+            "quantityType": "Lt"
         }
     ],
     "orders": [

@@ -24,16 +24,22 @@ app.get('/api/products', async (req, res) => {
 })
 
 app.post('/api/products', async (req, res) => {
-    console.log("body in post products ", req.body)
-    const { name, type, price, manufacturer, quantityType } = req.body as newProductRequestBody;
+    const { id, name, type, price, manufacturer, quantityType } = req.body as newProductRequestBody;
     if (!name || !type || !price || !manufacturer || !quantityType) {
         console.log('hello')
         res.status(400).json({ message: "Bad Request"});
         return;
     }
 
+    var newId: string
+    if(id) {
+        newId = id
+    } else {
+        newId = crypto.randomUUID()
+    }
+
     const dbentry = {
-        id: crypto.randomUUID(),
+        id: newId,
         name,
         type,
         price,
@@ -47,6 +53,8 @@ app.post('/api/products', async (req, res) => {
     
     res.status(201).json(await db.getData('/products'));
 })
+
+
 
 app.delete('/api/product/:id', async(req, res) => {
     await db.delete('/products[' + await db.getIndex('/products', req.params.id) + ']')

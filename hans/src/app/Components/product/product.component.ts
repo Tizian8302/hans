@@ -11,7 +11,7 @@ export class ProductComponent implements OnInit {
   products: Product[] = [];
 
   newProduct: Product = {
-    id: '1',
+    id: '',
     name: '',
     price: 0.0,
     manufacturer: '',
@@ -35,9 +35,20 @@ export class ProductComponent implements OnInit {
       }
     );
   }
+  
+  addProduct(): void {
+    if (this.newProduct.name && this.newProduct.type &&this.newProduct.price && this.newProduct.manufacturer && this.newProduct.quantityType) {
+      this.productService.addProduct(this.newProduct).subscribe((products) => {this.products = products})
+      this.clearNewProduct();
+    }
+  }
+  
+  updateProduct(product: Product): void {
+    this.deleteProductByObject(product)
+    this.productService.updateProduct(product).subscribe((products) => {this.products = products})
+  }
 
-  deleteProduct(index: number): void {
-    const product = this.products[index];
+  deleteProductByObject(product: Product) {
     if (product && product.id) {
       this.productService.deleteProduct(product.id).subscribe(
         (products) => {
@@ -47,21 +58,14 @@ export class ProductComponent implements OnInit {
     }
   }
   
-
-  addProduct(): void {
-    if (this.newProduct.name && this.newProduct.price && this.newProduct.manufacturer && this.newProduct.quantityType) {
-      this.productService.addProduct(this.newProduct).subscribe((products) => {this.products = products})
-      this.clearNewProduct();
-    }
-  }
-
-  updateProduct(product: Product): void {
-
+  deleteProduct(index: number): void {
+    const product = this.products[index];
+    this.deleteProductByObject(product)
   }
 
   clearNewProduct(): void {
     this.newProduct = {
-      id: '1',
+      id: '',
       name: '',
       price: 0.0,
       manufacturer: '',
