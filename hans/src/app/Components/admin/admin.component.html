@@ -1,0 +1,19 @@
+<div class="login-container">
+    <h2>Admin Login</h2>
+
+    <div class="form-group">
+        <label for="username">Benutzername:</label>
+        <input type="text" id="username" [(ngModel)]="username" placeholder="Geben Sie den Benutzernamen ein">
+    </div>
+
+    <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" [(ngModel)]="password" placeholder="********">
+    </div>
+
+    <div class="form-group">
+        <button (click)="login()">Login</button>
+    </div>
+
+    <p class="error-message" *ngIf="loginFailed">Ungültige Eingabe! Bitte erneut versuchen.</p>
+</div>

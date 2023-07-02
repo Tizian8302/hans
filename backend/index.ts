@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import crypto from "crypto";
-import { newOrderRequestBody } from '../shared/types';
+import { newOrderRequestBody, newProductRequestBody } from '../shared/types';
 import { JsonDB, Config } from 'node-json-db';
 
 const app = express();
@@ -17,23 +17,43 @@ app.get('/api', (req, res) => {
   res.send('Hello World!')
 })
 
-app.get('/api/products', (req, res) => {
-    res.json([
-        {
-            name: 'Apfel',
-            type: 'Frucht',
-            price: 1.5,
-            manufacturer: 'Migros',
-            quantityType: 'Stk'
-        }, {
-            name: 'Birne',
-            type: 'Frucht',
-            price: 1.2,
-            manufacturer: 'Coop',
-            quantityType: 'Stk'
-        }
-    ])
+// Products
+
+app.get('/api/products', async (req, res) => {
+    res.send(await db.getData('/products'))
 })
+
+app.post('/api/products', async (req, res) => {
+    console.log("body in post products ", req.body)
+    const { name, type, price, manufacturer, quantityType } = req.body as newProductRequestBody;
+    if (!name || !type || !price || !manufacturer || !quantityType) {
+        console.log('hello')
+        res.status(400).json({ message: "Bad Request"});
+        return;
+    }
+
+    const dbentry = {
+        id: crypto.randomUUID(),
+        name,
+        type,
+        price,
+        manufacturer,
+        quantityType
+    }
+
+    console.log("dbentry", dbentry)
+    
+    await db.push(`/products[]`, dbentry)
+    
+    res.status(201).json(await db.getData('/products'));
+})
+
+app.delete('/api/product/:id', async(req, res) => {
+    await db.delete('/products[' + await db.getIndex('/products', req.params.id) + ']')
+    res.status(200).json(await db.getData('/products')); 
+})
+
+// Orders
 
 app.post('/api/orders', async (req, res) => {
     console.log("body in post orders ", req.body)
@@ -68,6 +88,8 @@ app.delete('/api/order/:id', async(req, res) => {
     await db.delete('/orders[' + await db.getIndex('/orders', req.params.id) + ']')
     res.status(200).json(await db.getData('/orders')); // <- sie gönd devo us dass du nüt zrugg gisch wil normal macht ä api das au nöd
 })
+
+// App
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)

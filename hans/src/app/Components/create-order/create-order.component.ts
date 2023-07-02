@@ -12,10 +12,26 @@ export class CreateOrderComponent {
   wohnhaus!: string;
   datum!: string;
   passwort!: string;
-
+  
+  successMessage!: string;
   orders: Order[] = [] 
 
   constructor(private orderService: OrderService) {}
+
+  submitOrder(): void {
+    this.createOrder();
+
+    this.name = '';
+    this.wohnhaus = '';
+    this.datum = '';
+    this.passwort = '';
+
+    this.successMessage = 'Die Bestellung wurde erfolgreich aufgegeben';
+
+    setTimeout(() => {
+      this.successMessage = '';
+    }, 3000); 
+  }
 
   createOrder(): void {
     const newOrder = {
@@ -30,13 +46,5 @@ export class CreateOrderComponent {
     }
 
     this.orderService.createOrder(newOrder).subscribe(orders => this.orders = orders)
-  }
-
-  deleteOrder(id: string) {
-    this.orderService.deleteOrder(id).subscribe(orders => this.orders = orders)
-  }
-
-  ngOnInit(): void {
-    this.orderService.getOrders().subscribe(orders => this.orders = orders)
   }
 }

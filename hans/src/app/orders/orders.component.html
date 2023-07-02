@@ -1,0 +1,24 @@
+<h2 class="page-heading">Alle Bestellungen</h2>
+
+<table class="orders-table">
+    <thead>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Wohnhaus</th>
+        <th>Datum</th>
+        <th>Produkte</th>
+        <th>Löschen</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let order of orders">
+            <td>{{order.id}}</td>
+            <td>{{order.name}}</td>
+            <td>{{order.wohnhaus}}</td>
+            <td>{{order.datum}}</td>
+            <td>{{order.products}}</td>
+            <td><button (click)="deleteOrder(order.id)">Delete</button></td>
+        </tr>
+    </tbody>
+</table>
+
+<app-product></app-product>

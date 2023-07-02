@@ -8,18 +8,34 @@ import { ProductComponent } from './Components/product/product.component';
 import { HttpClientModule } from  '@angular/common/http';
 import { ProductService } from './Components/Services/product.service';
 import { CreateOrderComponent } from './Components/create-order/create-order.component';
+import { RouterModule, Routes } from '@angular/router';
+import { OrdersComponent } from './orders/orders.component';
+import { AdminLoginComponent } from './Components/admin/admin.component';
+
+const appRoutes: Routes = [
+  { path: 'orders', component: OrdersComponent },
+  { path: 'products', component: ProductComponent },
+  { path: 'admin', component: AdminLoginComponent},
+  { path: '**', component: CreateOrderComponent }
+]
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductComponent,
-    CreateOrderComponent
+    CreateOrderComponent,
+    OrdersComponent,
+    AdminLoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot(
+      appRoutes,
+      { enableTracing: true } // <-- debugging purposes only
+    )
   ],
   providers: [ProductService],
   bootstrap: [AppComponent]

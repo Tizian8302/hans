@@ -7,6 +7,14 @@
             "price": 12,
             "manufacturer": "Migros",
             "quantityType": "Stk"
+        },
+        {
+            "id": 2,
+            "name": "Birne",
+            "type": "Frucht",
+            "price": 12,
+            "manufacturer": "Migros",
+            "quantityType": "Stk"
         }
     ],
     "orders": [
@@ -20,17 +28,24 @@
             ]
         },
         {
-            "id": "0853ec49-9681-4f9d-95c6-6defa8d54823",
-            "name": "sdf",
-            "wohnhaus": "sdf",
-            "datum": "sdf",
+            "id": "d37d7d05-ef72-4a23-bdd0-425856464313",
+            "name": "hallo",
+            "wohnhaus": "lskdjflkj",
+            "datum": "2002-11-06",
             "products": []
         },
         {
-            "id": "a75b4836-6265-4eb0-b324-692bf82341d6",
+            "id": "f97f934d-77e6-4cdc-839d-785d0ff555ae",
+            "name": "sldkfjl",
+            "wohnhaus": "hsdf",
+            "datum": "2023-06-30",
+            "products": []
+        },
+        {
+            "id": "3c3d571d-4529-413b-afba-6bcecdd42335",
             "name": "sdf",
             "wohnhaus": "sdf",
-            "datum": "sdf",
+            "datum": "2002-11-06",
             "products": []
         }
     ]

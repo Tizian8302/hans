@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Product, ProductService } from '../Services/product.service';
+import { ProductService } from '../Services/product.service';
+import { Product } from '../Services/product.service';
 
 @Component({
   selector: 'app-product',
@@ -7,13 +8,65 @@ import { Product, ProductService } from '../Services/product.service';
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
-  public products: Product[] = []
-  constructor(private service: ProductService) {}
+  products: Product[] = [];
+
+  newProduct: Product = {
+    id: '1',
+    name: '',
+    price: 0.0,
+    manufacturer: '',
+    quantityType: '',
+    type: ''
+  };
+
+  constructor(private productService: ProductService) { }
 
   ngOnInit(): void {
-    this.service.getAllProducts().subscribe(
-      products => this.products = products
+    this.getProducts();
+  }
+
+  getProducts(): void {
+    this.productService.getAllProducts().subscribe(
+      (products: Product[]) => {
+        this.products = products;
+      },
+      (error: any) => {
+        console.error('Error fetching products:', error);
+      }
     );
   }
 
+  deleteProduct(index: number): void {
+    const product = this.products[index];
+    if (product && product.id) {
+      this.productService.deleteProduct(product.id).subscribe(
+        (products) => {
+          this.products = products
+        }
+      );
+    }
+  }
+  
+
+  addProduct(): void {
+    if (this.newProduct.name && this.newProduct.price && this.newProduct.manufacturer && this.newProduct.quantityType) {
+      this.productService.addProduct(this.newProduct).subscribe((products) => {this.products = products})
+      this.clearNewProduct();
+    }
+  }
+
+  updateProduct(product: Product): void {
+
+  }
+
+  clearNewProduct(): void {
+    this.newProduct = {
+      id: '1',
+      name: '',
+      price: 0.0,
+      manufacturer: '',
+      quantityType: '',
+      type: ''
+    };
+  }
 }

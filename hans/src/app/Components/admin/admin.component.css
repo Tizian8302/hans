@@ -1,4 +1,4 @@
-.form-container {
+.login-container {
     max-width: 400px;
     margin: 0 auto;
     padding: 20px;
@@ -7,35 +7,30 @@
     border-radius: 4px;
 }
 
-.form-container h2 {
+.login-container h2 {
     margin-bottom: 20px;
     color: #333;
 }
 
-.form-container .flex {
-    display: flex;
-    align-items: center;
+.login-container .form-group {
+    margin-bottom: 15px;
 }
 
-.form-container .gap-4 {
-    gap: 1rem;
-}
-
-.form-container label {
-    width: 120px;
+.login-container .form-group label {
+    display: block;
     font-weight: bold;
+    margin-bottom: 5px;
 }
 
-.form-container input[type="text"],
-.form-container input[type="password"],
-.form-container input[type="date"] {
+.login-container .form-group input[type="text"],
+.login-container .form-group input[type="password"] {
+    width: 100%;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    width: 100%;
 }
 
-.form-container button {
+.login-container .form-group button {
     padding: 10px 20px;
     background-color: #333;
     color: #fff;
@@ -44,12 +39,7 @@
     cursor: pointer;
 }
 
-.form-container button:hover {
+.login-container .form-group button:hover {
     background-color: #ff6347;
     /* Change to your desired hover color */
-}
-
-.success-message {
-    margin-top: 10px;
-    color: green;
 }

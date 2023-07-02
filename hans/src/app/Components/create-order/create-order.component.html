@@ -1,47 +1,27 @@
-<h2>Create Order</h2>
+<div class="form-container">
+  <h2>Neue Bestellung aufgeben</h2>
 
-<div class="flex flex-row gap-4">
-  <label class="w-24" for="name">Name:</label>
-  <input type="text" id="name" [(ngModel)]="name" placeholder="Enter name">
+  <div class="flex flex-row gap-4">
+    <label class="w-24" for="name">Vorname Name:</label>
+    <input type="text" id="name" [(ngModel)]="name" placeholder="Max Muster">
+  </div>
+
+  <div class="flex flex-row gap-4">
+    <label class="w-24" for="wohnhaus">Wohnhaus:</label>
+    <input type="text" id="wohnhaus" [(ngModel)]="wohnhaus" placeholder="Wohnhaus 1">
+  </div>
+
+  <div class="flex flex-row gap-4">
+    <label class="w-24" for="datum">Datum von-bis:</label>
+    <input type="date" id="datum" [(ngModel)]="datum">
+  </div>
+
+  <div class="flex flex-row gap-4">
+    <label class="w-24" for="passwort">Passwort:</label>
+    <input type="password" id="passwort" [(ngModel)]="passwort" placeholder="**********">
+  </div>
+
+  <button (click)="submitOrder()">Submit</button>
+
+  <p class="success-message" *ngIf="successMessage">{{ successMessage }}</p>
 </div>
-
-<div class="flex flex-row gap-4">
-  <label class="w-24" for="wohnhaus">Wohnhaus:</label>
-  <input type="text" id="wohnhaus" [(ngModel)]="wohnhaus" placeholder="Enter Wohnhaus">
-</div>
-
-<div class="flex flex-row gap-4">
-  <label class="w-24" for="datum">Datum:</label>
-  <input type="text" id="datum" [(ngModel)]="datum" placeholder="Enter Datum">
-</div>
-
-<div class="flex flex-row gap-4">
-  <label class="w-24" for="passwort">Passwort:</label>
-  <input type="password" id="passwort" [(ngModel)]="passwort" placeholder="Enter Passwort">
-</div>
-
-<button (click)="createOrder()">Submit</button>
-
-
-<h2>These are all the orders from the backend</h2>
-
-<table>
-    <thead>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Wohnhaus</th>
-        <th>Datum</th>
-        <th>Produkte</th>
-        <th>Löschen</th>
-    </thead>
-    <tbody>
-        <tr *ngFor="let order of orders">
-            <td>{{order.id}}</td>
-            <td>{{order.name}}</td>
-            <td>{{order.wohnhaus}}</td>
-            <td>{{order.datum}}</td>
-            <td>{{order.products}}</td>
-            <td><button (click)="deleteOrder(order.id)">Delete</button></td>
-        </tr>
-    </tbody>
-</table>

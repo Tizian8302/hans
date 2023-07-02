@@ -1,18 +1,52 @@
-<h2>These are all the products from the backend</h2>
+<div class="products-container">
+    <h2>Produkte bearbeiten</h2>
 
-<table>
-    <thead>
-        <th>Name</th>
-        <th>Price</th>
-        <th>Manufacturer</th>
-        <th>QuantityType</th>
-    </thead>
-    <tbody>
-        <tr *ngFor="let product of products">
-            <td>{{product.name}}</td>
-            <td>{{product.price}}</td>
-            <td>{{product.manufacturer}}</td>
-            <td>{{product.quantityType}}</td>
-        </tr>
-    </tbody>
-</table>
+    <table class="products-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Art</th>
+                <th>Preis</th>
+                <th>Hersteller</th>
+                <th>Menge in</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let product of products; let i = index">
+                <td><input type="text" [(ngModel)]="product.name"></td>
+                <td><input type="text" [(ngModel)]="product.type"></td>
+                <td><input type="text" [(ngModel)]="product.price"></td>
+                <td><input type="text" [(ngModel)]="product.manufacturer"></td>
+                <td><input type="text" [(ngModel)]="product.quantityType"></td>
+                <td>
+                    <button (click)="updateProduct(product)">Save</button>
+                    <button (click)="deleteProduct(i)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="input-group">
+        <label for="newProductName">Name:</label>
+        <input type="text" id="newProductName" [(ngModel)]="newProduct.name">
+    </div>
+    <div class="input-group">
+        <label for="newProductType">Art:</label>
+        <input type="text" id="newProductType" [(ngModel)]="newProduct.type">
+    </div>
+    <div class="input-group">
+        <label for="newProductPrice">Preis:</label>
+        <input type="text" id="newProductPrice" [(ngModel)]="newProduct.price">
+    </div>
+    <div class="input-group">
+        <label for="newProductManufacturer">Hersteller:</label>
+        <input type="text" id="newProductManufacturer" [(ngModel)]="newProduct.manufacturer">
+    </div>
+    <div class="input-group">
+        <label for="newProductQuantityType">Menge in:</label>
+        <input type="text" id="newProductQuantityType" [(ngModel)]="newProduct.quantityType">
+    </div>
+
+    <button (click)="addProduct()">Add Product</button>
+</div>
