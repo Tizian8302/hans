@@ -54,6 +54,9 @@ app.post('/api/products', async (req, res) => {
     res.status(201).json(await db.getData('/products'));
 })
 
+app.put('/api/products/:id', async (req, res) => {
+    await db.push('/products[' + await db.getIndex('/products', req.params.id) + ']', req.body)
+})
 
 
 app.delete('/api/product/:id', async(req, res) => {
@@ -84,7 +87,8 @@ app.post('/api/orders', async (req, res) => {
     
     await db.push(`/orders[]`, dbentry)
     
-    res.status(201).json(await db.getData('/orders'));
+    //await db.getData('/orders')
+    res.status(201).json(dbentry);
 })
   
 app.get('/api/orders', async (req, res) => {
@@ -92,7 +96,6 @@ app.get('/api/orders', async (req, res) => {
 })
 
 app.delete('/api/order/:id', async(req, res) => {
-    console.log('im here', req.params.id)
     await db.delete('/orders[' + await db.getIndex('/orders', req.params.id) + ']')
     res.status(200).json(await db.getData('/orders')); // <- sie gönd devo us dass du nüt zrugg gisch wil normal macht ä api das au nöd
 })

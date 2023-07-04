@@ -9,13 +9,15 @@ import { HttpClientModule } from  '@angular/common/http';
 import { ProductService } from './Components/Services/product.service';
 import { CreateOrderComponent } from './Components/create-order/create-order.component';
 import { RouterModule, Routes } from '@angular/router';
-import { OrdersComponent } from './orders/orders.component';
 import { AdminLoginComponent } from './Components/admin/admin.component';
+import { OrdersComponent } from './Components/orders/orders.component';
+import { AddProductsComponent } from './Components/add-products/add-products.component';
 
 const appRoutes: Routes = [
   { path: 'orders', component: OrdersComponent },
   { path: 'products', component: ProductComponent },
   { path: 'admin', component: AdminLoginComponent},
+  { path: 'addProducts', component: AddProductsComponent},
   { path: '**', component: CreateOrderComponent }
 ]
 
