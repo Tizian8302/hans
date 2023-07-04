@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Order } from '../Services/order.service';
+import { AuthService } from '../Services/auth.service';
 
 @Component({
   selector: 'app-add-products',
@@ -10,15 +11,10 @@ import { Order } from '../Services/order.service';
 export class AddProductsComponent {
   order!: any;
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private authService: AuthService) {
   }
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
-      if (params && Object.keys(params).length > 0) {
-        this.order = params as Order;
-        console.log('HELP ME IM DEAD INSIDE', this.order)
-      }
-    });
+    this.order = this.authService.getOrder()
   }
 }

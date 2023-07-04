@@ -25,10 +25,10 @@ export class CreateOrderComponent {
       name: this.name,
       wohnhaus: this.wohnhaus,
       datum: this.datum,
-      products: []
+      products: [] = []
     };
 
-    if (this.authService.login(this.passwort, newOrder)) {
+    if (!this.authService.login(this.passwort, newOrder)) {
       console.log('Password incorrect')
       this.errorMessage = "Dieses Passwort ist nicht korrekt!"
       setTimeout(() => {
@@ -38,26 +38,8 @@ export class CreateOrderComponent {
     }
 
     this.orderService.createOrder(newOrder).subscribe(order => {
-      this.router.navigate(['/addProducts', {
-        queryParams: order, skipLocationChange: true
-      }]);
+      this.router.navigate(['/addProducts']);
     });
-
-    this.resetView();
   }
-
-  resetView() {
-    this.name = '';
-    this.wohnhaus = '';
-    this.datum = '';
-    this.passwort = '';
-
-    this.successMessage = 'Die Bestellung wurde erfolgreich aufgegeben';
-
-    setTimeout(() => {
-      this.successMessage = '';
-    }, 3000);
-  }
-
 
 }
