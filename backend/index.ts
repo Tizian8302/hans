@@ -87,8 +87,12 @@ app.post('/api/orders', async (req, res) => {
     
     await db.push(`/orders[]`, dbentry)
     
-    //await db.getData('/orders')
     res.status(201).json(dbentry);
+})
+
+app.put('/api/orders/:id/products', async (req, res) => {
+    await db.push('/orders[' +await db.getIndex('/orders', req.params.id) + ']/products[]', req.body)
+    res.status(200).json(await db.getData('/orders'));
 })
   
 app.get('/api/orders', async (req, res) => {

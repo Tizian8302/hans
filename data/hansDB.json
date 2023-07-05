@@ -23,14 +23,6 @@
             "price": "30",
             "manufacturer": "denner",
             "quantityType": "Stk"
-        },
-        {
-            "id": "970c7c84-38fc-482e-a9b5-25c8d9ab8691",
-            "name": "sdf",
-            "type": "sdf",
-            "price": 7,
-            "manufacturer": "sdf",
-            "quantityType": "sdf"
         }
     ],
     "orders": [
@@ -49,45 +41,17 @@
             "products": []
         },
         {
-            "id": "3ec700bf-476f-4795-b962-078c7b0d5cbb",
-            "name": "wer",
-            "wohnhaus": "wer",
-            "datum": "2023-07-05",
+            "id": "502a07bb-706f-4939-80ec-0861e3f296d4",
+            "name": "sdf",
+            "wohnhaus": "sdf",
+            "datum": "2023-07-10",
             "products": []
         },
         {
-            "id": "3ef03167-1715-476a-965d-ae1adbfd19b9",
-            "name": "qwer",
-            "wohnhaus": "qwer",
-            "datum": "2023-06-28",
-            "products": []
-        },
-        {
-            "id": "d9e3237c-23c1-4bed-92f8-6e6fcaa87996",
+            "id": "3490ba63-9fa8-422b-bea0-49c952e2352f",
             "name": "asdf",
             "wohnhaus": "asdf",
-            "datum": "2023-06-28",
-            "products": []
-        },
-        {
-            "id": "23ec635b-dc74-4b76-acf7-f49c7cbbbb57",
-            "name": "sadf",
-            "wohnhaus": "asdf",
-            "datum": "2023-07-05",
-            "products": []
-        },
-        {
-            "id": "60076350-d57a-4092-9f61-b7974d313c63",
-            "name": "sdf",
-            "wohnhaus": "sdf",
-            "datum": "2023-07-05",
-            "products": []
-        },
-        {
-            "id": "728d6e2e-5245-4d49-900d-3367f8d276c0",
-            "name": "sdf",
-            "wohnhaus": "sdf",
-            "datum": "2002-02-07",
+            "datum": "2023-07-04",
             "products": []
         }
     ]

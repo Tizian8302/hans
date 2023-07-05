@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { OrderItem } from './product.service';
 
 export interface Order {
   id: string
@@ -25,6 +26,11 @@ export class OrderService {
 
   getOrders(): Observable<Order[]> {
     return this.http.get<Order[]>(`${url}/orders`)
+  }
+
+  addProductToOrder(productToOrder: OrderItem, order: Order) {
+    //TODO fix this
+    return this.http.put<OrderItem>(`${url}/orders/${order.id}/products`, productToOrder)
   }
 
   deleteOrder(id: string): Observable<Order[]> {

@@ -27,7 +27,8 @@ const appRoutes: Routes = [
     ProductComponent,
     CreateOrderComponent,
     OrdersComponent,
-    AdminLoginComponent
+    AdminLoginComponent,
+    AddProductsComponent
   ],
   imports: [
     BrowserModule,

@@ -15,7 +15,6 @@ export class CreateOrderComponent {
   datum!: string;
   passwort!: string;
 
-  successMessage!: string;
   errorMessage!: string;
 
   constructor(private authService: AuthService, private orderService: OrderService, private router: Router) { }

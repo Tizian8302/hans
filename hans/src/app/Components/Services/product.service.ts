@@ -8,7 +8,12 @@ export interface Product {
   type: string,
   price: number,
   manufacturer: string,
-  quantityType: string
+  quantityType: string,
+}
+
+export interface OrderItem {
+  product: Product,
+  orderAmount: number
 }
 
 const port = 3000

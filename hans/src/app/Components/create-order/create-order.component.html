@@ -21,8 +21,7 @@
     <input type="password" id="passwort" [(ngModel)]="passwort" placeholder="**********">
   </div>
 
-  <button (click)="submitOrder()">Submit</button>
+  <button (click)="submitOrder()">Produkte hinzufügen</button>
 
-  <p class="success-message" *ngIf="successMessage">{{ successMessage }}</p>
   <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
 </div>
