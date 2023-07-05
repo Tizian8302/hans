@@ -13,8 +13,3 @@ export type newProductRequestBody = {
     manufacturer: string,
     quantityType: string
 }
-
-export type newProductToOrderRequestBody = {
-    id: string,
-    orderAmount: number
-}

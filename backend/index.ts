@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import crypto from "crypto";
-import { newOrderRequestBody, newProductRequestBody, newProductToOrderRequestBody } from '../shared/types';
+import { newOrderRequestBody, newProductRequestBody } from '../shared/types';
 import { JsonDB, Config } from 'node-json-db';
 
 const app = express();
@@ -91,17 +91,44 @@ app.post('/api/orders', async (req, res) => {
 })
 
 app.put('/api/orders/:id/products', async (req, res) => {
-    console.log('PARAMS ID', req.params)
-    console.log('REQ BODY', req.body)
+    const productId = req.body.product.id;
+    const orderAmount = req.body.orderAmount;
 
-    const {id, orderAmount} = req.body as newProductToOrderRequestBody
-    const dbEntry = {
-        id: id,
-        orderAmount: orderAmount
+    const orderIndex = await db.getIndex('/orders', req.params.id);
+    if (orderIndex === -1) {
+        // Order not found
+        res.status(404).json({ error: 'Order not found' });
+        return;
     }
-    await db.push('/orders[' +await db.getIndex('/orders', req.params.id) + ']/products[]', dbEntry)
+
+    const orderPath = '/orders[' + orderIndex + ']';
+
+    // Find the index of the product in the 'products' array of the order
+    const products = await db.getData(orderPath + '/products');
+    let productIndex = -1;
+    for (let i = 0; i < products.length; i++) {
+        if (products[i].productId === productId) {
+            productIndex = i;
+            break;
+        }
+    }
+
+    if (productIndex === -1) {
+        // Product not found, add it as a new product
+        const dbEntry = {
+            productId,
+            orderAmount
+        };
+        await db.push(orderPath + '/products[]', dbEntry);
+    } else {
+        // Product exists, update its properties
+        products[productIndex].orderAmount = orderAmount;
+        await db.save(); // Save the changes to the database
+    }
+
     res.status(200).json(await db.getData('/orders'));
-})
+});
+
   
 app.get('/api/orders', async (req, res) => {
     res.send(await db.getData('/orders'))

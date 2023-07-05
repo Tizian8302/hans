@@ -20,8 +20,8 @@
                 <td><input type="text" [(ngModel)]="product.manufacturer"></td>
                 <td><input type="text" [(ngModel)]="product.quantityType"></td>
                 <td>
-                    <button (click)="updateProduct(product)">Save</button>
-                    <button (click)="deleteProduct(i)">Delete</button>
+                    <button (click)="updateProduct(product)">Speichern</button>
+                    <button (click)="deleteProduct(i)">Löschen</button>
                 </td>
             </tr>
         </tbody>
@@ -50,5 +50,5 @@
         <input type="text" id="newProductQuantityType" placeholder="Kg" [(ngModel)]="newProduct.quantityType">
     </div>
 
-    <button (click)="addProduct()">Add Product</button>
+    <button (click)="addProduct()">Produkt hinzufügen</button>
 </div>

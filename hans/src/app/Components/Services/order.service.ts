@@ -29,7 +29,6 @@ export class OrderService {
   }
 
   addProductToOrder(productToOrder: OrderItem, order: Order) {
-    //TODO fix this
     return this.http.put<OrderItem>(`${url}/orders/${order.id}/products`, productToOrder)
   }
 
