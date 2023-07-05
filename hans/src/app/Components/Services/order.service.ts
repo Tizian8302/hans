@@ -20,7 +20,7 @@ export class OrderService {
 
   constructor(private http: HttpClient) {}
 
-  createOrder(newOrder: { name: string; wohnhaus: string; datum: string; }): Observable<Order> {
+  createOrder(newOrder: { id: string, name: string; wohnhaus: string; datum: string; }): Observable<Order> {
     return this.http.post<Order>(`${url}/orders`, newOrder);
   }
 

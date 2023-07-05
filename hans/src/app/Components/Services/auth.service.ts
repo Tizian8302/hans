@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AuthService {
+  id!: string
   name!: string
   wohnhaus!: string
   datum!: string
@@ -11,8 +12,9 @@ export class AuthService {
 
   constructor() { }
 
-  login(password: string, order: {name: string, wohnhaus: string, datum: string, products: []}) {
+  login(password: string, order: {id: string, name: string, wohnhaus: string, datum: string, products: []}) {
     if (password == 'Hans8302') {
+      this.id = order.id
       this.name = order.name
       this.wohnhaus = order.wohnhaus
       this.datum = order.datum
@@ -25,6 +27,7 @@ export class AuthService {
 
   getOrder() {
     return {
+      id: this.id,
       name: this.name,
       wohnhaus: this.wohnhaus,
       datum: this.datum,

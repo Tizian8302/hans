@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import crypto from "crypto";
-import { newOrderRequestBody, newProductRequestBody } from '../shared/types';
+import { newOrderRequestBody, newProductRequestBody, newProductToOrderRequestBody } from '../shared/types';
 import { JsonDB, Config } from 'node-json-db';
 
 const app = express();
@@ -68,15 +68,15 @@ app.delete('/api/product/:id', async(req, res) => {
 
 app.post('/api/orders', async (req, res) => {
     console.log("body in post orders ", req.body)
-    const { name, wohnhaus, datum } = req.body as newOrderRequestBody;
-    if (!name || !wohnhaus || !datum) {
+    const { id, name, wohnhaus, datum } = req.body as newOrderRequestBody;
+    if (!id || !name || !wohnhaus || !datum) {
         res.status(400).json({ message: "Bad Request"});
         return;
     }
 
     const products: [] = []
     const dbentry = {
-        id: crypto.randomUUID(),
+        id,
         name,
         wohnhaus,
         datum,
@@ -91,7 +91,15 @@ app.post('/api/orders', async (req, res) => {
 })
 
 app.put('/api/orders/:id/products', async (req, res) => {
-    await db.push('/orders[' +await db.getIndex('/orders', req.params.id) + ']/products[]', req.body)
+    console.log('PARAMS ID', req.params)
+    console.log('REQ BODY', req.body)
+
+    const {id, orderAmount} = req.body as newProductToOrderRequestBody
+    const dbEntry = {
+        id: id,
+        orderAmount: orderAmount
+    }
+    await db.push('/orders[' +await db.getIndex('/orders', req.params.id) + ']/products[]', dbEntry)
     res.status(200).json(await db.getData('/orders'));
 })
   

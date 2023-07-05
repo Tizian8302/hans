@@ -31,7 +31,8 @@ export class AddProductsComponent {
 
   addProductToOrder(product: OrderItem) {
     console.log('PRODUCT TO ORDER', product)
-    this.orderService.addProductToOrder(product, this.order)
+    console.log('ORDERRR', this.order)
+    this.orderService.addProductToOrder(product, this.order).subscribe()
   }
   submitForm() {
     throw new Error('Method not implemented.');

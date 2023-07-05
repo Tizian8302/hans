@@ -21,6 +21,7 @@ export class CreateOrderComponent {
 
   submitOrder(): void {
     const newOrder = {
+      id: crypto.randomUUID(),
       name: this.name,
       wohnhaus: this.wohnhaus,
       datum: this.datum,
@@ -28,7 +29,6 @@ export class CreateOrderComponent {
     };
 
     if (!this.authService.login(this.passwort, newOrder)) {
-      console.log('Password incorrect')
       this.errorMessage = "Dieses Passwort ist nicht korrekt!"
       setTimeout(() => {
         this.errorMessage = '';

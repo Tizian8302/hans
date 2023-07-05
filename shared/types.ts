@@ -1,4 +1,5 @@
 export type newOrderRequestBody = {
+    id: string;
     name: string;
     wohnhaus: string;
     datum: Date;
@@ -11,4 +12,9 @@ export type newProductRequestBody = {
     price: number,
     manufacturer: string,
     quantityType: string
+}
+
+export type newProductToOrderRequestBody = {
+    id: string,
+    orderAmount: number
 }
