@@ -2,6 +2,13 @@
   margin-top: 30px;
 }
 
+h2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
 .products-table {
   width: 100%;
   border-collapse: collapse;

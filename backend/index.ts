@@ -4,18 +4,24 @@ import crypto from "crypto";
 import { newOrderRequestBody, newProductRequestBody } from '../shared/types';
 import { JsonDB, Config } from 'node-json-db';
 
+// const session = require('express-session')
+// const bodyParser = require('body-parser')
 const app = express();
 const port = 3000
 
 app.use(cors())
 app.use(express.static('public'))
 app.use(express.json())
+// app.use(session({
+//     secret: 'Nobody has to know',
+//     resave: false,
+//     saveUninitialized: true
+// }))
 
 const db = new JsonDB(new Config("../data/hansDB", true, true, '/'))
 
-app.get('/api', (req, res) => {
-  res.send('Hello World!')
-})
+//Sessions
+
 
 // Products
 
