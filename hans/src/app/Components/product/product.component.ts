@@ -44,7 +44,6 @@ export class ProductComponent implements OnInit {
   }
   
   updateProduct(product: Product): void {
-    this.deleteProductByObject(product)
     this.productService.updateProduct(product).subscribe((products) => {this.products = products})
   }
 

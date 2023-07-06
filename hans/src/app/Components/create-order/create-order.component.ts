@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Order, OrderService } from '../Services/order.service';
+import { Router } from '@angular/router';
+import { AuthService } from '../Services/auth.service';
 
 @Component({
   selector: 'app-create-order',
@@ -12,39 +14,31 @@ export class CreateOrderComponent {
   wohnhaus!: string;
   datum!: string;
   passwort!: string;
-  
-  successMessage!: string;
-  orders: Order[] = [] 
 
-  constructor(private orderService: OrderService) {}
+  errorMessage!: string;
+
+  constructor(private authService: AuthService, private orderService: OrderService, private router: Router) { }
 
   submitOrder(): void {
-    this.createOrder();
-
-    this.name = '';
-    this.wohnhaus = '';
-    this.datum = '';
-    this.passwort = '';
-
-    this.successMessage = 'Die Bestellung wurde erfolgreich aufgegeben';
-
-    setTimeout(() => {
-      this.successMessage = '';
-    }, 3000); 
-  }
-
-  createOrder(): void {
     const newOrder = {
+      id: crypto.randomUUID(),
       name: this.name,
       wohnhaus: this.wohnhaus,
-      datum: this.datum
+      datum: this.datum,
+      products: [] = []
     };
 
-    if(this.passwort !== 'Hans8302') {
-      console.log('Password incorrect')
+    if (!this.authService.login(this.passwort, newOrder)) {
+      this.errorMessage = "Dieses Passwort ist nicht korrekt!"
+      setTimeout(() => {
+        this.errorMessage = '';
+      }, 3000);
       return
     }
 
-    this.orderService.createOrder(newOrder).subscribe(orders => this.orders = orders)
+    this.orderService.createOrder(newOrder).subscribe(order => {
+      this.router.navigate(['/addProducts']);
+    });
   }
+
 }

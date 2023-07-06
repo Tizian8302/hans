@@ -4,17 +4,9 @@
             "id": "b6693472-9561-4e04-af44-0afee5411760",
             "name": "test",
             "type": "test",
-            "price": "30",
-            "manufacturer": "Coop",
+            "price": "15",
+            "manufacturer": "denner",
             "quantityType": "Stk"
-        },
-        {
-            "id": "b6693472-9561-4e04-af44-0afee5411760",
-            "name": "test",
-            "type": "test",
-            "price": "1",
-            "manufacturer": "Migros",
-            "quantityType": "Kg"
         },
         {
             "id": "bd3ac241-0159-481c-9391-7e5366ada27f",
@@ -23,38 +15,57 @@
             "price": "15",
             "manufacturer": "Migros",
             "quantityType": "Lt"
+        },
+        {
+            "id": "1dba4c17-0e4a-44d6-b842-35baee96b94e",
+            "name": "Apfel",
+            "type": "Frucht",
+            "price": 12,
+            "manufacturer": "Migros",
+            "quantityType": "Kg"
         }
     ],
     "orders": [
         {
-            "id": 1,
-            "name": "Mike",
-            "wohnhaus": "Wohnhaus 1",
-            "datum": "heute",
-            "products": [
-                1
-            ]
-        },
-        {
-            "id": "d37d7d05-ef72-4a23-bdd0-425856464313",
-            "name": "hallo",
-            "wohnhaus": "lskdjflkj",
-            "datum": "2002-11-06",
+            "id": "2201e120-63a2-4d32-9c64-5a2e19822ad9",
+            "name": "Max",
+            "wohnhaus": "Wohnhaus 2",
+            "datum": "2023-07-01",
             "products": []
         },
         {
-            "id": "f97f934d-77e6-4cdc-839d-785d0ff555ae",
-            "name": "sldkfjl",
-            "wohnhaus": "hsdf",
-            "datum": "2023-06-30",
+            "id": "88d1fecd-272c-4a23-b9c0-5f85f6430561",
+            "name": "wer",
+            "wohnhaus": "Wohnhaus 3",
+            "datum": "2023-07-14",
             "products": []
         },
         {
-            "id": "3c3d571d-4529-413b-afba-6bcecdd42335",
+            "id": "502a07bb-706f-4939-80ec-0861e3f296d4",
             "name": "sdf",
-            "wohnhaus": "sdf",
-            "datum": "2002-11-06",
+            "wohnhaus": "Wohnhaus 2",
+            "datum": "2023-07-10",
             "products": []
+        },
+        {
+            "id": "b1ea08c7-9d61-40cb-9615-e8c81c5056bc",
+            "name": "Max Muster",
+            "wohnhaus": "Wohnhaus 1",
+            "datum": "2023-07-13",
+            "products": [
+                {
+                    "productId": "b6693472-9561-4e04-af44-0afee5411760",
+                    "orderAmount": 1
+                },
+                {
+                    "productId": "1dba4c17-0e4a-44d6-b842-35baee96b94e",
+                    "orderAmount": 2
+                },
+                {
+                    "productId": "bd3ac241-0159-481c-9391-7e5366ada27f",
+                    "orderAmount": 4
+                }
+            ]
         }
     ]
 }

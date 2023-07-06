@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { OrderItem } from './product.service';
 
 export interface Order {
   id: string
@@ -19,12 +20,16 @@ export class OrderService {
 
   constructor(private http: HttpClient) {}
 
-  createOrder(newOrder: { name: string; wohnhaus: string; datum: string; }): Observable<Order[]> {
-    return this.http.post<Order[]>(`${url}/orders`, newOrder);
+  createOrder(newOrder: { id: string, name: string; wohnhaus: string; datum: string; }): Observable<Order> {
+    return this.http.post<Order>(`${url}/orders`, newOrder);
   }
 
   getOrders(): Observable<Order[]> {
     return this.http.get<Order[]>(`${url}/orders`)
+  }
+
+  addProductToOrder(productToOrder: OrderItem, order: Order) {
+    return this.http.put<OrderItem>(`${url}/orders/${order.id}/products`, productToOrder)
   }
 
   deleteOrder(id: string): Observable<Order[]> {

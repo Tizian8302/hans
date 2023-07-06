@@ -7,7 +7,7 @@
         <th>Wohnhaus</th>
         <th>Datum</th>
         <th>Produkte</th>
-        <th>Löschen</th>
+        <th></th>
     </thead>
     <tbody>
         <tr *ngFor="let order of orders">
@@ -16,7 +16,7 @@
             <td>{{order.wohnhaus}}</td>
             <td>{{order.datum}}</td>
             <td>{{order.products}}</td>
-            <td><button (click)="deleteOrder(order.id)">Delete</button></td>
+            <td><button (click)="deleteOrder(order.id)">Löschen</button></td>
         </tr>
     </tbody>
 </table>

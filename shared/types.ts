@@ -1,4 +1,5 @@
 export type newOrderRequestBody = {
+    id: string;
     name: string;
     wohnhaus: string;
     datum: Date;

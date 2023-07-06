@@ -49,7 +49,7 @@
     /* Change to your desired hover color */
 }
 
-.success-message {
+.error-message {
     margin-top: 10px;
-    color: green;
+    color: red;
 }

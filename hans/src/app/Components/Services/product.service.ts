@@ -8,7 +8,12 @@ export interface Product {
   type: string,
   price: number,
   manufacturer: string,
-  quantityType: string
+  quantityType: string,
+}
+
+export interface OrderItem {
+  product: Product,
+  orderAmount: number
 }
 
 const port = 3000
@@ -25,7 +30,7 @@ export class ProductService {
   }
 
   updateProduct(updatedProduct: Product): Observable<Product[]> {
-    return this.http.post<Product[]>(`${url}/products`, updatedProduct)
+    return this.http.put<Product[]>(`${url}/products/${updatedProduct.id}`, updatedProduct)
   }
 
   deleteProduct(id: string): Observable<Product[]> {
