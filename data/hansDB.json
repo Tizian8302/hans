@@ -48,22 +48,25 @@
             "products": []
         },
         {
-            "id": "b1ea08c7-9d61-40cb-9615-e8c81c5056bc",
-            "name": "Max Muster",
-            "wohnhaus": "Wohnhaus 1",
-            "datum": "2023-07-13",
+            "id": "0e8bc781-62eb-43ce-a48c-826824052651",
+            "name": "test",
+            "wohnhaus": "Wohnhaus 4",
+            "datum": "2023-06-28",
+            "products": []
+        },
+        {
+            "id": "977b87f4-8b56-4d13-9778-3389d57df3ac",
+            "name": "asdf",
+            "wohnhaus": "asdf",
+            "datum": "2023-06-25",
             "products": [
                 {
                     "productId": "b6693472-9561-4e04-af44-0afee5411760",
-                    "orderAmount": 1
-                },
-                {
-                    "productId": "1dba4c17-0e4a-44d6-b842-35baee96b94e",
-                    "orderAmount": 2
+                    "orderAmount": 20
                 },
                 {
                     "productId": "bd3ac241-0159-481c-9391-7e5366ada27f",
-                    "orderAmount": 4
+                    "orderAmount": 10
                 }
             ]
         }

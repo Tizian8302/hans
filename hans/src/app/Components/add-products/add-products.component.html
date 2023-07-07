@@ -1,28 +1,29 @@
 <p>
-    {{ order?.id }}
-    {{ order?.name }}
-    {{ order?.wohnhaus }}
-    {{ order?.datum }}
-    {{ order?.products }}
-  </p>
-  
-  <div class="products-container">
-    <h2>Produkte bestellen</h2>
-  
-    <table class="products-table">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Art</th>
-          <th>Preis</th>
-          <th>Hersteller</th>
-          <th>Menge in</th>
-          <th>Menge zu Bestellen</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let product of allProducts">
+  {{ order?.id }}
+  {{ order?.name }}
+  {{ order?.wohnhaus }}
+  {{ order?.datum }}
+  {{ order?.products }}
+</p>
+
+<div class="products-container">
+  <h2>Produkte bestellen</h2>
+
+  <table class="products-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Art</th>
+        <th>Preis</th>
+        <th>Hersteller</th>
+        <th>Menge in</th>
+        <th>Menge zu Bestellen</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let product of allProducts; let i = index">
+        <tr [class.selected]="isRowSelected(i)">
           <td>{{ product.product.name }}</td>
           <td>{{ product.product.type }}</td>
           <td>{{ product.product.price }}</td>
@@ -32,14 +33,14 @@
             <input id="orderAmount" type="number" [(ngModel)]="product.orderAmount">
           </td>
           <td>
-            <button (click)="addProductToOrder(product)">Add to Order</button>
+            <button (click)="addProductToOrder(product, i)">Hinzufügen</button>
           </td>
         </tr>
-      </tbody>
-    </table>
-  
-    <div class="button-container">
-      <button (click)="submitForm()">Bestellung aufgeben</button>
-    </div>
+      </ng-container>
+    </tbody>
+  </table>
+
+  <div class="button-container">
+    <button (click)="submitForm()">Bestellung aufgeben</button>
   </div>
-  
+</div>
