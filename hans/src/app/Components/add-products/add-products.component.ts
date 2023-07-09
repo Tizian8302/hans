@@ -12,7 +12,7 @@ export class AddProductsComponent {
 
   order!: any;
   allProducts: OrderItem[] = []
-  orderItems: OrderItem[] = [];
+  selectedProductIndices: number[] = [];
 
   constructor(private orderService: OrderService, private authService: AuthService, private productService: ProductService) {
   }
@@ -29,11 +29,16 @@ export class AddProductsComponent {
   }
   
 
-  addProductToOrder(product: OrderItem) {
-    console.log('PRODUCT TO ORDER', product)
-    console.log('ORDERRR', this.order)
+  addProductToOrder(product: OrderItem, index: number) {
     this.orderService.addProductToOrder(product, this.order).subscribe()
+
+    this.selectedProductIndices.push(index);
   }
+
+  isRowSelected(index: number): boolean {
+    return this.selectedProductIndices.includes(index);
+  }
+
   submitForm() {
     throw new Error('Method not implemented.');
   }
