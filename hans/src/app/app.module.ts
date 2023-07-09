@@ -10,7 +10,7 @@ import { ProductService } from './Components/Services/product.service';
 import { CreateOrderComponent } from './Components/create-order/create-order.component';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminLoginComponent } from './Components/admin/admin.component';
-import { OrdersComponent } from './Components/orders/orders.component';
+import { OrdersComponent } from './Components/admin/orders/orders.component';
 import { AddProductsComponent } from './Components/add-products/add-products.component';
 
 const appRoutes: Routes = [

@@ -1,15 +1,9 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { OrderItem } from './product.service';
+import { Order } from '../interfaces/Order';
 
-export interface Order {
-  id: string
-  name: string;
-  wohnhaus: string;
-  datum: string;
-  products: []
-}
 const port = 3000
 const url = `http://localhost:${port}/api`
 
@@ -25,7 +19,14 @@ export class OrderService {
   }
 
   getOrders(): Observable<Order[]> {
-    return this.http.get<Order[]>(`${url}/orders`)
+    return this.http.get<Order[]>(`${url}/orders`).pipe(
+      map(orders => {
+        orders.forEach(order => {
+          order.wohnhausId = parseInt(order.wohnhaus.split(' ')[1]); // Assuming Wohnhaus is in the format "Wohnhaus 1"
+        });
+        return orders;
+      })
+    )
   }
 
   addProductToOrder(productToOrder: OrderItem, order: Order) {
