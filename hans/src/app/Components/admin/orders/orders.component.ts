@@ -22,7 +22,9 @@ export class OrdersComponent {
 
     this.orders.forEach(order => {
       const weekStart = this.getWeekStart(order.datum);
+      console.log('week start', weekStart)
       const weekEnd = this.getWeekEnd(order.datum);
+      console.log('week end', weekEnd)
 
       let weekOrderGroup = weeklyOrders.find(
         group => group.week === `${weekStart}-${weekEnd}`
@@ -35,12 +37,13 @@ export class OrdersComponent {
 
       weekOrderGroup.orders.push(order);
     });
+    console.log(weeklyOrders)
 
     return weeklyOrders;
   }
 
   private getWeekStart(dateString: string): string {
-    const [day, month, year] = dateString.split('.').map(Number);
+    const [year, month, day] = dateString.split('-').map(Number);
     const date = new Date(year, month - 1, day);
     const dayOfWeek = date.getUTCDay() || 7;
   
@@ -49,7 +52,7 @@ export class OrdersComponent {
   }
   
   private getWeekEnd(dateString: string): string {
-    const [day, month, year] = dateString.split('.').map(Number);
+    const [year, month, day] = dateString.split('-').map(Number);
     const date = new Date(year, month - 1, day);
     const dayOfWeek = date.getUTCDay() || 7;
   
@@ -70,6 +73,7 @@ export class OrdersComponent {
       return this.isSameWeek(start, end, week);
     });
     this.selectedWeekIndex = weekIndex !== -1 ? weekIndex : null;
+    console.log(this.selectedWeekIndex)
   }
 
   private isSameWeek(start: string, end: string, targetWeek: string): boolean {
