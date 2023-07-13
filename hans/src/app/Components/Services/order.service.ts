@@ -1,8 +1,9 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { Order } from '../interfaces/Order';
 import { OrderItem } from '../interfaces/OrderItem';
+import { WeeklyOrder } from '../interfaces/WeeklyOrder';
 
 const port = 3000
 const url = `http://localhost:${port}/api`
@@ -11,6 +12,7 @@ const url = `http://localhost:${port}/api`
   providedIn: 'root'
 })
 export class OrderService {
+  weeklyOrder!: WeeklyOrder
 
   constructor(private http: HttpClient) {}
 
@@ -57,6 +59,14 @@ export class OrderService {
     });
 
     return weeklyOrders;
+  }
+
+  setWeeklyOrder(weeklyOrder: WeeklyOrder) {
+    this.weeklyOrder = weeklyOrder
+  }
+
+  getWeeklyOrder() {
+    return this.weeklyOrder
   }
 
   private getWeekStart(dateString: string): string {

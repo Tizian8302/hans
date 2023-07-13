@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Order } from '../../interfaces/Order';
-import { OrderItem } from '../../interfaces/OrderItem';
 import { ProductService } from '../../Services/product.service';
+import { OrderService } from '../../Services/order.service';
+import { WeeklyOrder } from '../../interfaces/WeeklyOrder';
+
 
 @Component({
   selector: 'app-weekly-order',
@@ -10,14 +11,12 @@ import { ProductService } from '../../Services/product.service';
   styleUrls: ['./weekly-order.component.css']
 })
 export class WeeklyOrderComponent {
-  weeklyOrder!: { week: string; orders: Order[]; };
+  weeklyOrder!: WeeklyOrder
 
-  constructor(private route: ActivatedRoute, private productService: ProductService) { }
+  constructor(private route: ActivatedRoute, private productService: ProductService, private orderService: OrderService) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      this.weeklyOrder = params['weeklyOrder'];
-    });
+    this.weeklyOrder = this.orderService.getWeeklyOrder()
   }
 
   getProductList(): string[] {

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { OrderService } from '../../Services/order.service';
 import { Order } from '../../interfaces/Order';
 import { Router } from '@angular/router';
+import { WeeklyOrder } from '../../interfaces/WeeklyOrder';
 
 @Component({
   selector: 'app-orders',
@@ -27,7 +28,7 @@ export class OrdersComponent {
     this.orderService.deleteOrder(id).subscribe(orders => this.orders = orders)
   }
 
-  navigateToWeekOrders(week: string): void {
+  navigateToWeeklyOrder(week: string): void {
     const weeklyOrder = this.orderService.getWeeklyOrders(this.orders).find(group => {
       const [start, end] = group.week.split('-');
       if (group.week == week) {
@@ -36,7 +37,8 @@ export class OrdersComponent {
         return false
       }
     });
-    this.router.navigate(['/weeklyOrder', weeklyOrder])
+    this.orderService.setWeeklyOrder(weeklyOrder as WeeklyOrder)
+    this.router.navigate(['/weeklyOrder'])
   }
   
 }
