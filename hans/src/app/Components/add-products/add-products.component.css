@@ -67,11 +67,3 @@ button {
 .products-table tbody tr:nth-child(even).selected td {
   background-color: #cbe7ff !important;
 }
-
-.success {
-  background-color: #4caf50;
-  color: #fff;
-  padding: 10px;
-  border-radius: 4px;
-  text-align: center;
-}

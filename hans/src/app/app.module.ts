@@ -13,6 +13,8 @@ import { AdminLoginComponent } from './Components/admin/admin.component';
 import { OrdersComponent } from './Components/admin/orders/orders.component';
 import { AddProductsComponent } from './Components/add-products/add-products.component';
 import { WeeklyOrderComponent } from './Components/admin/weekly-order/weekly-order.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 const appRoutes: Routes = [
   { path: 'orders', component: OrdersComponent },
@@ -41,7 +43,9 @@ const appRoutes: Routes = [
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true } // <-- debugging purposes only
-    )
+    ),
+    BrowserAnimationsModule,
+    MatSnackBarModule
   ],
   providers: [ProductService],
   bootstrap: [AppComponent]

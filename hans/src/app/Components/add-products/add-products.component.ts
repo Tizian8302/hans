@@ -3,6 +3,7 @@ import { AuthService } from '../Services/auth.service';
 import { ProductService } from '../Services/product.service';
 import { OrderService } from '../Services/order.service';
 import { OrderItem } from '../interfaces/OrderItem';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-add-products',
@@ -14,13 +15,16 @@ export class AddProductsComponent {
   order!: any;
   allProducts: OrderItem[] = []
   selectedProductIndices: number[] = [];
-  success = false
 
-  constructor(private orderService: OrderService, private authService: AuthService, private productService: ProductService) {}
+  constructor(
+    private orderService: OrderService,
+    private authService: AuthService,
+    private productService: ProductService,
+    private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.order = this.authService.getOrder();
-  
+
     this.productService.getAllProducts().subscribe(products => {
       this.allProducts = products.map(product => ({
         product: product,
@@ -28,7 +32,7 @@ export class AddProductsComponent {
       }));
     });
   }
-  
+
 
   addProductToOrder(product: OrderItem, index: number) {
     this.orderService.addProductToOrder(product, this.order).subscribe()
@@ -40,10 +44,9 @@ export class AddProductsComponent {
     return this.selectedProductIndices.includes(index);
   }
 
-  submitForm() {
-    this.success = true
-    setTimeout(() => {
-      this.success = false;
-    }, 3000);
+  showSuccessMessage() {
+    this._snackBar.open('Ihre Bestellung wurde erfolgreich gespeichert. Sie können diese Seite nun schliessen', 'X', {
+      duration: 5000
+    })
   }
 }

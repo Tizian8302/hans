@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { environment } from 'src/environments/environment';
 import { AuthService } from '../Services/auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-admin-login',
@@ -11,16 +11,19 @@ import { AuthService } from '../Services/auth.service';
 export class AdminLoginComponent {
   username!: string;
   password!: string;
-  loginFailed!: boolean;
 
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(private router: Router, 
+    private authService: AuthService,
+    private _matSnackBar: MatSnackBar) {}
 
   login(): void {
-    this.authService.adminLogin(this.username, this.password)
-    if (this.username === 'admin' && this.password === environment.adminPassword) {
+    
+    if (this.authService.adminLogin(this.username, this.password)) {
       this.router.navigate(['/orders']);
     } else {
-      this.loginFailed = true;
+      this._matSnackBar.open("Dieses Passwort ist nicht korrekt!", "X", {
+        duration: 5000
+      })
     }
   }
 }
