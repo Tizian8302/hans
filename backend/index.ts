@@ -32,7 +32,6 @@ app.get('/api/products', async (req, res) => {
 app.post('/api/products', async (req, res) => {
     const { id, name, type, price, manufacturer, quantityType } = req.body as newProductRequestBody;
     if (!name || !type || !price || !manufacturer || !quantityType) {
-        console.log('hello')
         res.status(400).json({ message: "Bad Request"});
         return;
     }
@@ -52,8 +51,6 @@ app.post('/api/products', async (req, res) => {
         manufacturer,
         quantityType
     }
-
-    console.log("dbentry", dbentry)
     
     await db.push(`/products[]`, dbentry)
     
@@ -73,7 +70,6 @@ app.delete('/api/product/:id', async(req, res) => {
 // Orders
 
 app.post('/api/orders', async (req, res) => {
-    console.log("body in post orders ", req.body)
     const { id, name, wohnhaus, datum } = req.body as newOrderRequestBody;
     if (!id || !name || !wohnhaus || !datum) {
         res.status(400).json({ message: "Bad Request"});
@@ -88,8 +84,6 @@ app.post('/api/orders', async (req, res) => {
         datum,
         products
     }
-
-    console.log(dbentry)
     
     await db.push(`/orders[]`, dbentry)
     
@@ -148,5 +142,5 @@ app.delete('/api/order/:id', async(req, res) => {
 // App
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+  console.log(`Hans im Glück app listening on port ${port}`)
 })

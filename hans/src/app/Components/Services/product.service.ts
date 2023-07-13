@@ -1,20 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-
-export interface Product {
-  id: string,
-  name: string,
-  type: string,
-  price: number,
-  manufacturer: string,
-  quantityType: string,
-}
-
-export interface OrderItem {
-  product: Product,
-  orderAmount: number
-}
+import { Product } from '../interfaces/Product';
 
 const port = 3000
 const url = `http://localhost:${port}/api`

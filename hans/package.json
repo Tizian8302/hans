@@ -6,7 +6,8 @@
     "start": "ng serve --disable-host-check --host 0.0.0.0",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "deploy": "ng deploy --base-href=https://tizian8302.github.io/hans/"
   },
   "private": true,
   "dependencies": {

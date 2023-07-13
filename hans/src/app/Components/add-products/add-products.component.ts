@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../Services/auth.service';
-import { OrderItem, Product, ProductService } from '../Services/product.service';
+import { ProductService } from '../Services/product.service';
 import { OrderService } from '../Services/order.service';
+import { OrderItem } from '../interfaces/OrderItem';
 
 @Component({
   selector: 'app-add-products',
@@ -13,9 +14,9 @@ export class AddProductsComponent {
   order!: any;
   allProducts: OrderItem[] = []
   selectedProductIndices: number[] = [];
+  success = false
 
-  constructor(private orderService: OrderService, private authService: AuthService, private productService: ProductService) {
-  }
+  constructor(private orderService: OrderService, private authService: AuthService, private productService: ProductService) {}
 
   ngOnInit(): void {
     this.order = this.authService.getOrder();
@@ -40,6 +41,9 @@ export class AddProductsComponent {
   }
 
   submitForm() {
-    throw new Error('Method not implemented.');
+    this.success = true
+    setTimeout(() => {
+      this.success = false;
+    }, 3000);
   }
 }

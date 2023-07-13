@@ -30,8 +30,6 @@ export class OrdersComponent {
   navigateToWeekOrders(week: string): void {
     const weeklyOrder = this.orderService.getWeeklyOrders(this.orders).find(group => {
       const [start, end] = group.week.split('-');
-      console.log('week', group.week)
-      console.log('start, end', start, end)
       if (group.week == week) {
         return true
       } else {
@@ -39,7 +37,6 @@ export class OrdersComponent {
       }
     });
     this.router.navigate(['/weeklyOrder', weeklyOrder])
-    console.log('weekly order', weeklyOrder)
   }
   
 }

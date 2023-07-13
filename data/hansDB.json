@@ -55,18 +55,62 @@
             "products": []
         },
         {
-            "id": "977b87f4-8b56-4d13-9778-3389d57df3ac",
-            "name": "asdf",
-            "wohnhaus": "asdf",
-            "datum": "2023-06-25",
+            "id": "568886d9-75cc-4ee1-85ca-46f00be7465b",
+            "name": "Max Muster",
+            "wohnhaus": "Wohnhaus 1",
+            "datum": "2023-07-13",
             "products": [
                 {
                     "productId": "b6693472-9561-4e04-af44-0afee5411760",
-                    "orderAmount": 20
+                    "orderAmount": 13
                 },
                 {
                     "productId": "bd3ac241-0159-481c-9391-7e5366ada27f",
                     "orderAmount": 10
+                },
+                {
+                    "productId": "1dba4c17-0e4a-44d6-b842-35baee96b94e",
+                    "orderAmount": 20
+                }
+            ]
+        },
+        {
+            "id": "bcfc5012-e197-4489-a079-4e70274966c0",
+            "name": "Maxi",
+            "wohnhaus": "Wohnhaus 2",
+            "datum": "2023-07-12",
+            "products": [
+                {
+                    "productId": "b6693472-9561-4e04-af44-0afee5411760",
+                    "orderAmount": 1
+                },
+                {
+                    "productId": "bd3ac241-0159-481c-9391-7e5366ada27f",
+                    "orderAmount": 9
+                },
+                {
+                    "productId": "1dba4c17-0e4a-44d6-b842-35baee96b94e",
+                    "orderAmount": 30
+                }
+            ]
+        },
+        {
+            "id": "f7bd2efc-8278-4d84-9e20-1fa6348911f9",
+            "name": "asdf",
+            "wohnhaus": "Wohnhaus 3",
+            "datum": "2023-07-14",
+            "products": [
+                {
+                    "productId": "b6693472-9561-4e04-af44-0afee5411760",
+                    "orderAmount": 10
+                },
+                {
+                    "productId": "bd3ac241-0159-481c-9391-7e5366ada27f",
+                    "orderAmount": 30
+                },
+                {
+                    "productId": "1dba4c17-0e4a-44d6-b842-35baee96b94e",
+                    "orderAmount": 40
                 }
             ]
         }

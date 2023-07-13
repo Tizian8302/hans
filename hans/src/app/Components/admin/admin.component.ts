@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
+import { AuthService } from '../Services/auth.service';
 
 @Component({
   selector: 'app-admin-login',
@@ -11,10 +13,11 @@ export class AdminLoginComponent {
   password!: string;
   loginFailed!: boolean;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private authService: AuthService) {}
 
   login(): void {
-    if (this.username === 'admin' && this.password === 'AdminHans8302') {
+    this.authService.adminLogin(this.username, this.password)
+    if (this.username === 'admin' && this.password === environment.adminPassword) {
       this.router.navigate(['/orders']);
     } else {
       this.loginFailed = true;

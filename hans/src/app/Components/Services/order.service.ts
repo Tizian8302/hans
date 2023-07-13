@@ -1,8 +1,8 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
-import { OrderItem } from './product.service';
 import { Order } from '../interfaces/Order';
+import { OrderItem } from '../interfaces/OrderItem';
 
 const port = 3000
 const url = `http://localhost:${port}/api`
@@ -34,7 +34,6 @@ export class OrderService {
   }
 
   deleteOrder(id: string): Observable<Order[]> {
-    console.log(`${url}/order/${id}`)
     return this.http.delete<Order[]>(`${url}/order/${id}`)
   }
 
@@ -56,7 +55,6 @@ export class OrderService {
 
       weekOrderGroup.orders.push(order);
     });
-    console.log(weeklyOrders)
 
     return weeklyOrders;
   }
