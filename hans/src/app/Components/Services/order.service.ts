@@ -70,20 +70,19 @@ export class OrderService {
   }
 
   private getWeekStart(dateString: string): string {
-    const [year, month, day] = dateString.split('-').map(Number);
-    const date = new Date(year, month - 1, day);
-    const dayOfWeek = date.getUTCDay() || 7;
-  
-    const startOfWeek = new Date(date.getTime() - (dayOfWeek - 1) * 24 * 60 * 60 * 1000);
+    const date = new Date(dateString)
+    const dayOfWeek = date.getUTCDay() || 7
+    const startOfWeek = new Date(date)
+    startOfWeek.setDate(date.getDate() - dayOfWeek + 1)
+
     return this.formatDate(startOfWeek);
   }
   
   private getWeekEnd(dateString: string): string {
-    const [year, month, day] = dateString.split('-').map(Number);
-    const date = new Date(year, month - 1, day);
-    const dayOfWeek = date.getUTCDay() || 7;
-  
-    const endOfWeek = new Date(date.getTime() + (7 - dayOfWeek) * 24 * 60 * 60 * 1000);
+    const date = new Date(dateString)
+    const dayOfWeek = date.getUTCDay() || 7
+    const endOfWeek = new Date(date)
+    endOfWeek.setDate(date.getDate() - dayOfWeek + 7)
     return this.formatDate(endOfWeek);
   }  
 

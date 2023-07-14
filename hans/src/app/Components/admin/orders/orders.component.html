@@ -1,7 +1,7 @@
 <h2 class="page-heading">Alle Bestellungen</h2>
 
 <div *ngFor="let weekOrder of getWeeklyOrders(); let i = index">
-  <h3 (click)="navigateToWeeklyOrder(weekOrder.week)">{{ weekOrder.week }}</h3>
+  <h3 class="week-order" (click)="navigateToWeeklyOrder(weekOrder.week)">Bestellungen von: {{ weekOrder.week }}</h3>
   <table class="orders-table" *ngIf="i === selectedWeekIndex">
     <thead>
       <th>Id</th>

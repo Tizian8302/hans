@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../../Services/product.service';
 import { OrderService } from '../../Services/order.service';
 import { WeeklyOrder } from '../../interfaces/WeeklyOrder';
+import { Product } from '../../interfaces/Product';
 
 
 @Component({
@@ -12,31 +13,17 @@ import { WeeklyOrder } from '../../interfaces/WeeklyOrder';
 })
 export class WeeklyOrderComponent {
   weeklyOrder!: WeeklyOrder
+  productList: string[] = []
 
   constructor(private route: ActivatedRoute, private productService: ProductService, private orderService: OrderService) { }
 
   ngOnInit(): void {
     this.weeklyOrder = this.orderService.getWeeklyOrder()
-  }
-
-  getProductList(): string[] {
-    const productList: string[] = [];
-
     this.productService.getAllProducts().subscribe(products => {
       products.forEach(product => {
-        productList.push(product.name)
+        this.productList.push(product.name)
       });
-      
-    })
-    // this.weeklyOrder.orders.forEach(order => {
-    //   order.products.forEach(product => {
-    //     if (!productList.includes(product)) {
-    //       productList.push(product);
-    //     }
-    //   });
-    // });
-
-    return productList;
+    });
   }
 
   // getAmountForWohnhaus(product: string, wohnhausId: number): number {
