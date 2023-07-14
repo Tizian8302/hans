@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { OrderService } from '../../Services/order.service';
-import { Order } from '../../interfaces/Order';
 import { Router } from '@angular/router';
-import { WeeklyOrder } from '../../interfaces/WeeklyOrder';
+import { DBOrder, Order, WeeklyOrder } from '../../../../../../shared/types';
 
 @Component({
   selector: 'app-orders',
@@ -10,9 +9,7 @@ import { WeeklyOrder } from '../../interfaces/WeeklyOrder';
   styleUrls: ['./orders.component.css']
 })
 export class OrdersComponent {
-  orders: Order[] = [] 
-  weeklyOrders: { week: string; orders: Order[]; }[] = [];
-  selectedWeekIndex: number | null = null;
+  orders: DBOrder[] = []
 
   constructor(private orderService: OrderService, private router: Router) {}
 
@@ -20,7 +17,7 @@ export class OrdersComponent {
     this.orderService.getOrders().subscribe(orders => this.orders = orders)
   }
 
-  getWeeklyOrders(): { week: string; orders: Order[] }[] {
+  getWeeklyOrders(): WeeklyOrder[] {
     return this.orderService.getWeeklyOrders(this.orders)
   }
 
@@ -29,7 +26,7 @@ export class OrdersComponent {
   }
 
   navigateToWeeklyOrder(week: string): void {
-    const weeklyOrder = this.orderService.getWeeklyOrders(this.orders).find(group => {
+    const weeklyOrder = this.getWeeklyOrders().find(group => {
       const [start, end] = group.week.split('-');
       if (group.week == week) {
         return true

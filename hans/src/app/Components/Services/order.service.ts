@@ -1,9 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
-import { Order } from '../interfaces/Order';
-import { OrderItem } from '../interfaces/OrderItem';
-import { WeeklyOrder } from '../interfaces/WeeklyOrder';
+import { WeeklyOrder, OrderItem, Order, Product, DBOrder, FullWeeklyOrder } from '../../../../../shared/types';
+import { ProductService } from './product.service';
 
 const port = 3000
 const url = `http://localhost:${port}/api`
@@ -12,16 +11,16 @@ const url = `http://localhost:${port}/api`
   providedIn: 'root'
 })
 export class OrderService {
-  weeklyOrder!: WeeklyOrder
+  weeklyOrder!: FullWeeklyOrder[]
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private productService: ProductService) { }
 
   createOrder(newOrder: { id: string, name: string; wohnhaus: string; datum: string; }): Observable<Order> {
     return this.http.post<Order>(`${url}/orders`, newOrder);
   }
 
-  getOrders(): Observable<Order[]> {
-    return this.http.get<Order[]>(`${url}/orders`).pipe(
+  getOrders(): Observable<DBOrder[]> {
+    return this.http.get<DBOrder[]>(`${url}/orders`).pipe(
       map(orders => {
         orders.forEach(order => {
           order.wohnhausId = parseInt(order.wohnhaus.split(' ')[1]); // Assuming Wohnhaus is in the format "Wohnhaus 1"
@@ -35,12 +34,12 @@ export class OrderService {
     return this.http.put<OrderItem>(`${url}/orders/${order.id}/products`, productToOrder)
   }
 
-  deleteOrder(id: string): Observable<Order[]> {
-    return this.http.delete<Order[]>(`${url}/order/${id}`)
+  deleteOrder(id: string): Observable<DBOrder[]> {
+    return this.http.delete<DBOrder[]>(`${url}/order/${id}`)
   }
 
-  getWeeklyOrders(orders: Order[]): { week: string; orders: Order[] }[] {
-    const weeklyOrders: { week: string; orders: Order[] }[] = [];
+  getWeeklyOrders(orders: DBOrder[]): WeeklyOrder[] {
+    const weeklyOrders: WeeklyOrder[] = [];
 
     orders.forEach(order => {
       const weekStart = this.getWeekStart(order.datum);
@@ -58,11 +57,49 @@ export class OrderService {
       weekOrderGroup.orders.push(order);
     });
 
+    console.log('weekly Order: ', weeklyOrders)
     return weeklyOrders;
   }
 
   setWeeklyOrder(weeklyOrder: WeeklyOrder) {
-    this.weeklyOrder = weeklyOrder
+    let fullWeeklyOrder: FullWeeklyOrder[] = []
+
+    weeklyOrder.orders.forEach(order => {
+      let allProducts: { product: Product; orderAmount: number; }[] = []
+      order.products.forEach(item => {
+        let productJSON: {
+          product: Product,
+          orderAmount: number
+        }
+        this.productService.getProductById(item.id).subscribe(
+          product => {
+            if (product) {
+              console.log('product ', product)
+              productJSON = {
+                product: product,
+                orderAmount: item.orderAmount
+              }
+              console.log('product json', productJSON)
+              allProducts.push(productJSON)
+            }
+          }
+        );
+      })
+
+      let test = {
+        id: order.id,
+        name: order.name,
+        wohnhaus: order.wohnhaus,
+        datum: order.datum,
+        week: weeklyOrder.week,
+        products: allProducts,
+      }
+      console.log('test', test)
+      fullWeeklyOrder.push(test);
+
+    })
+
+    this.weeklyOrder = fullWeeklyOrder
   }
 
   getWeeklyOrder() {
@@ -77,14 +114,14 @@ export class OrderService {
 
     return this.formatDate(startOfWeek);
   }
-  
+
   private getWeekEnd(dateString: string): string {
     const date = new Date(dateString)
     const dayOfWeek = date.getUTCDay() || 7
     const endOfWeek = new Date(date)
     endOfWeek.setDate(date.getDate() - dayOfWeek + 7)
     return this.formatDate(endOfWeek);
-  }  
+  }
 
   private formatDate(date: Date): string {
     const day = String(date.getDate()).padStart(2, '0');

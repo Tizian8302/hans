@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { AuthService } from '../Services/auth.service';
 import { ProductService } from '../Services/product.service';
 import { OrderService } from '../Services/order.service';
-import { OrderItem } from '../interfaces/OrderItem';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { OrderItem } from '../../../../../shared/types';
 
 @Component({
   selector: 'app-add-products',

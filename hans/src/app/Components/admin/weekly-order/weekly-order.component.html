@@ -1,27 +1,20 @@
-<p>weekly-order works!</p>
-{{weeklyOrder.week}}
-<!-- <div class="page-heading">
-    Bestellung der Woche: {{ weeklyOrder.week }}
+<div class="weekly-order-container">
+  <h2>Weekly Order: {{ weeklyOrder[0].week }}</h2>
+
+  <div class="order-details">
+    <div class="order-info">
+      <h3>{{ weeklyOrder[0].name }}</h3>
+      <p>Wohnhaus: {{ weeklyOrder[0].wohnhaus }}</p>
+      <p>Datum: {{ weeklyOrder[0].datum }}</p>
+    </div>
+
+    <div class="order-products">
+      <h3>Products:</h3>
+      <ul>
+        <li *ngFor="let product of weeklyOrder[0]?.products">
+          {{ product.product.name }} - {{ product.orderAmount }}
+        </li>
+      </ul>
+    </div>
   </div>
-  
-  <table class="orders-table">
-    <thead>
-      <tr>
-        <th>Produkte</th>
-        <ng-container *ngFor="let wohnhausOrder of weeklyOrder.orders">
-          <th>{{ wohnhausOrder.wohnhaus }}</th>
-        </ng-container>
-      </tr>
-    </thead>
-    <tbody>
-      <ng-container *ngFor="let product of getProductList()">
-        <tr>
-          <td>{{ product }}</td>
-          <ng-container *ngFor="let wohnhausOrder of weeklyOrder.orders">
-            <td>{{ getAmountForWohnhaus(product, wohnhausOrder.wohnhausId) }}</td>
-          </ng-container>
-        </tr>
-      </ng-container>
-    </tbody>
-  </table>
-   -->
+</div>

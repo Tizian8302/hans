@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import crypto from "crypto";
-import { newOrderRequestBody, newProductRequestBody } from '../shared/types';
+import { DBOrder, newOrderRequestBody, newProductRequestBody } from '../shared/types';
 import { JsonDB, Config } from 'node-json-db';
 
 const app = express();
@@ -18,6 +18,10 @@ const db = new JsonDB(new Config("../data/hansDB", true, true, '/'))
 
 app.get('/api/products', async (req, res) => {
     res.send(await db.getData('/products'))
+})
+
+app.get('/api/products/:id', async (req, res) => {
+    res.send(await db.getData('/products[' + await db.getIndex('/products', req.params.id) + ']'))
 })
 
 app.post('/api/products', async (req, res) => {
@@ -122,7 +126,7 @@ app.put('/api/orders/:id/products', async (req, res) => {
 
   
 app.get('/api/orders', async (req, res) => {
-    res.send(await db.getData('/orders'))
+    res.send(await db.getObject<DBOrder>('/orders'))
 })
 
 app.delete('/api/order/:id', async(req, res) => {

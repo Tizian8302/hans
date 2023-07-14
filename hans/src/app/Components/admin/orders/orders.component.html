@@ -2,27 +2,28 @@
 
 <div *ngFor="let weekOrder of getWeeklyOrders(); let i = index">
   <h3 class="week-order" (click)="navigateToWeeklyOrder(weekOrder.week)">Bestellungen von: {{ weekOrder.week }}</h3>
-  <table class="orders-table" *ngIf="i === selectedWeekIndex">
-    <thead>
-      <th>Id</th>
-      <th>Name</th>
-      <th>Wohnhaus</th>
-      <th>Datum</th>
-      <th>Produkte</th>
-      <th></th>
-    </thead>
-    <tbody>
-      <tr *ngFor="let order of weekOrder.orders">
-        <td>{{ order.id }}</td>
-        <td>{{ order.name }}</td>
-        <td>{{ order.wohnhaus }}</td>
-        <td>{{ order.datum }}</td>
-        <td>{{ order.products }}</td>
-        <td><button (click)="deleteOrder(order.id)">Löschen</button></td>
-      </tr>
-    </tbody>
-  </table>
-  <br>
 </div>
+<table class="orders-table">
+  <thead>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Wohnhaus</th>
+    <th>Datum</th>
+    <th>Produkte</th>
+    <th></th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let order of orders">
+      <td>{{ order.id }}</td>
+      <td>{{ order.name }}</td>
+      <td>{{ order.wohnhaus }}</td>
+      <td>{{ order.datum }}</td>
+      <td>{{ order.products }}</td>
+      <td><button (click)="deleteOrder(order.id)">Löschen</button></td>
+    </tr>
+  </tbody>
+</table>
+<br>
+
 
 <app-product></app-product>
