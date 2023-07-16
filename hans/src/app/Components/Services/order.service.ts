@@ -56,8 +56,6 @@ export class OrderService {
 
       weekOrderGroup.orders.push(order);
     });
-
-    console.log('weekly Order: ', weeklyOrders)
     return weeklyOrders;
   }
 
@@ -71,15 +69,13 @@ export class OrderService {
           product: Product,
           orderAmount: number
         }
-        this.productService.getProductById(item.id).subscribe(
+        this.productService.getProductById(item.productId).subscribe(
           product => {
             if (product) {
-              console.log('product ', product)
               productJSON = {
                 product: product,
                 orderAmount: item.orderAmount
               }
-              console.log('product json', productJSON)
               allProducts.push(productJSON)
             }
           }
@@ -94,7 +90,6 @@ export class OrderService {
         week: weeklyOrder.week,
         products: allProducts,
       }
-      console.log('test', test)
       fullWeeklyOrder.push(test);
 
     })

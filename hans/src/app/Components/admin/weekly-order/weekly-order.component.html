@@ -1,20 +1,31 @@
 <div class="weekly-order-container">
-  <h2>Weekly Order: {{ weeklyOrder[0].week }}</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Wohnhaus</th>
+        <th>Datum</th>
+        <th>Week</th>
+        <th>Products</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of weeklyOrder">
+        <td>{{ order.id }}</td>
+        <td>{{ order.name }}</td>
+        <td>{{ order.wohnhaus }}</td>
+        <td>{{ order.datum }}</td>
+        <td>{{ order.week }}</td>
+        <td>
+          <ul>
+            <li *ngFor="let product of order.products">
+              {{ product.product.name }} - {{ product.orderAmount }}
+            </li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
-  <div class="order-details">
-    <div class="order-info">
-      <h3>{{ weeklyOrder[0].name }}</h3>
-      <p>Wohnhaus: {{ weeklyOrder[0].wohnhaus }}</p>
-      <p>Datum: {{ weeklyOrder[0].datum }}</p>
-    </div>
-
-    <div class="order-products">
-      <h3>Products:</h3>
-      <ul>
-        <li *ngFor="let product of weeklyOrder[0]?.products">
-          {{ product.product.name }} - {{ product.orderAmount }}
-        </li>
-      </ul>
-    </div>
-  </div>
 </div>
