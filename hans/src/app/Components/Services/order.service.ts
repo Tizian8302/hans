@@ -81,16 +81,14 @@ export class OrderService {
           }
         );
       })
-
-      let test = {
+      fullWeeklyOrder.push({
         id: order.id,
         name: order.name,
         wohnhaus: order.wohnhaus,
         datum: order.datum,
         week: weeklyOrder.week,
         products: allProducts,
-      }
-      fullWeeklyOrder.push(test);
+      });
 
     })
 

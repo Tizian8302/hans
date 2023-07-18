@@ -39,7 +39,7 @@ export interface OrderItem {
 }
 
 export interface DBProduct {
-    id: string,
+    productId: string,
     orderAmount: number
 }
 
