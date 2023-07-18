@@ -1,5 +1,9 @@
 .products-container {
-  margin-top: 30px;
+  margin-top: 20px;
+}
+
+.new-product-container {
+  margin-top: 50px;
 }
 
 h2 {
@@ -35,7 +39,7 @@ h2 {
   cursor: pointer;
 }
 
-button {
+.delete-button {
   padding: 5px 10px;
   background-color: #ff6347;
   color: #fff;
@@ -43,6 +47,20 @@ button {
   border-radius: 4px;
   cursor: pointer;
   margin: 5px;
+}
+
+.success-button {
+  padding: 5px 10px;
+  background-color: #32cd32;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.success-button:hover {
+  background-color: #228b22 !important;
 }
 
 .products-table button:hover {

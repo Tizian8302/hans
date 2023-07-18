@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { Order, OrderService } from '../Services/order.service';
+import { OrderService } from '../Services/order.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../Services/auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-create-order',
@@ -15,9 +16,10 @@ export class CreateOrderComponent {
   datum!: string;
   passwort!: string;
 
-  errorMessage!: string;
-
-  constructor(private authService: AuthService, private orderService: OrderService, private router: Router) { }
+  constructor(private authService: AuthService, 
+    private orderService: OrderService, 
+    private router: Router,
+    private _matSnackBar: MatSnackBar) { }
 
   submitOrder(): void {
     const newOrder = {
@@ -29,10 +31,9 @@ export class CreateOrderComponent {
     };
 
     if (!this.authService.login(this.passwort, newOrder)) {
-      this.errorMessage = "Dieses Passwort ist nicht korrekt!"
-      setTimeout(() => {
-        this.errorMessage = '';
-      }, 3000);
+      this._matSnackBar.open("Dieses Passwort ist nicht korrekt!", "X", {
+        duration: 5000
+      })
       return
     }
 

@@ -1,0 +1,31 @@
+<div class="weekly-order-container">
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Wohnhaus</th>
+        <th>Datum</th>
+        <th>Week</th>
+        <th>Products</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of weeklyOrder">
+        <td>{{ order.id }}</td>
+        <td>{{ order.name }}</td>
+        <td>{{ order.wohnhaus }}</td>
+        <td>{{ order.datum }}</td>
+        <td>{{ order.week }}</td>
+        <td>
+          <ul>
+            <li *ngFor="let product of order.products">
+              {{ product.product.name }} - {{ product.orderAmount }}
+            </li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>

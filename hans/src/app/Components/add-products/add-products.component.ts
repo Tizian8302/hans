@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../Services/auth.service';
-import { OrderItem, Product, ProductService } from '../Services/product.service';
+import { ProductService } from '../Services/product.service';
 import { OrderService } from '../Services/order.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { OrderItem } from '../../../../../shared/types';
 
 @Component({
   selector: 'app-add-products',
@@ -12,14 +14,17 @@ export class AddProductsComponent {
 
   order!: any;
   allProducts: OrderItem[] = []
-  orderItems: OrderItem[] = [];
+  selectedProductIndices: number[] = [];
 
-  constructor(private orderService: OrderService, private authService: AuthService, private productService: ProductService) {
-  }
+  constructor(
+    private orderService: OrderService,
+    private authService: AuthService,
+    private productService: ProductService,
+    private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.order = this.authService.getOrder();
-  
+
     this.productService.getAllProducts().subscribe(products => {
       this.allProducts = products.map(product => ({
         product: product,
@@ -27,14 +32,21 @@ export class AddProductsComponent {
       }));
     });
   }
-  
 
-  addProductToOrder(product: OrderItem) {
-    console.log('PRODUCT TO ORDER', product)
-    console.log('ORDERRR', this.order)
+
+  addProductToOrder(product: OrderItem, index: number) {
     this.orderService.addProductToOrder(product, this.order).subscribe()
+
+    this.selectedProductIndices.push(index);
   }
-  submitForm() {
-    throw new Error('Method not implemented.');
+
+  isRowSelected(index: number): boolean {
+    return this.selectedProductIndices.includes(index);
+  }
+
+  showSuccessMessage() {
+    this._snackBar.open('Ihre Bestellung wurde erfolgreich gespeichert. Sie können diese Seite nun schliessen', 'X', {
+      duration: 5000
+    })
   }
 }

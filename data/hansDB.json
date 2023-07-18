@@ -2,18 +2,18 @@
     "products": [
         {
             "id": "b6693472-9561-4e04-af44-0afee5411760",
-            "name": "test",
-            "type": "test",
-            "price": "15",
-            "manufacturer": "denner",
-            "quantityType": "Stk"
+            "name": "Birne",
+            "type": "Frucht",
+            "price": "1.5",
+            "manufacturer": "Migros",
+            "quantityType": "Kg"
         },
         {
             "id": "bd3ac241-0159-481c-9391-7e5366ada27f",
-            "name": "sdf",
-            "type": "sdf",
-            "price": "15",
-            "manufacturer": "Migros",
+            "name": "Milch",
+            "type": "Milchprodukt",
+            "price": "4.25",
+            "manufacturer": "Coop",
             "quantityType": "Lt"
         },
         {
@@ -27,43 +27,130 @@
     ],
     "orders": [
         {
-            "id": "2201e120-63a2-4d32-9c64-5a2e19822ad9",
-            "name": "Max",
-            "wohnhaus": "Wohnhaus 2",
-            "datum": "2023-07-01",
-            "products": []
-        },
-        {
-            "id": "88d1fecd-272c-4a23-b9c0-5f85f6430561",
-            "name": "wer",
-            "wohnhaus": "Wohnhaus 3",
-            "datum": "2023-07-14",
-            "products": []
-        },
-        {
-            "id": "502a07bb-706f-4939-80ec-0861e3f296d4",
-            "name": "sdf",
-            "wohnhaus": "Wohnhaus 2",
-            "datum": "2023-07-10",
-            "products": []
-        },
-        {
-            "id": "b1ea08c7-9d61-40cb-9615-e8c81c5056bc",
+            "id": "568886d9-75cc-4ee1-85ca-46f00be7465b",
             "name": "Max Muster",
             "wohnhaus": "Wohnhaus 1",
             "datum": "2023-07-13",
             "products": [
                 {
                     "productId": "b6693472-9561-4e04-af44-0afee5411760",
-                    "orderAmount": 1
-                },
-                {
-                    "productId": "1dba4c17-0e4a-44d6-b842-35baee96b94e",
-                    "orderAmount": 2
+                    "orderAmount": 13
                 },
                 {
                     "productId": "bd3ac241-0159-481c-9391-7e5366ada27f",
-                    "orderAmount": 4
+                    "orderAmount": 10
+                },
+                {
+                    "productId": "1dba4c17-0e4a-44d6-b842-35baee96b94e",
+                    "orderAmount": 20
+                }
+            ]
+        },
+        {
+            "id": "bcfc5012-e197-4489-a079-4e70274966c0",
+            "name": "Maxi",
+            "wohnhaus": "Wohnhaus 2",
+            "datum": "2023-07-12",
+            "products": [
+                {
+                    "productId": "b6693472-9561-4e04-af44-0afee5411760",
+                    "orderAmount": 1
+                },
+                {
+                    "productId": "bd3ac241-0159-481c-9391-7e5366ada27f",
+                    "orderAmount": 9
+                },
+                {
+                    "productId": "1dba4c17-0e4a-44d6-b842-35baee96b94e",
+                    "orderAmount": 30
+                }
+            ]
+        },
+        {
+            "id": "f7bd2efc-8278-4d84-9e20-1fa6348911f9",
+            "name": "asdf",
+            "wohnhaus": "Wohnhaus 3",
+            "datum": "2023-07-14",
+            "products": [
+                {
+                    "productId": "b6693472-9561-4e04-af44-0afee5411760",
+                    "orderAmount": 10
+                },
+                {
+                    "productId": "bd3ac241-0159-481c-9391-7e5366ada27f",
+                    "orderAmount": 30
+                },
+                {
+                    "productId": "1dba4c17-0e4a-44d6-b842-35baee96b94e",
+                    "orderAmount": 40
+                }
+            ]
+        },
+        {
+            "id": "32cf5683-3593-437d-9573-dce251a7a2b5",
+            "name": "Test",
+            "wohnhaus": "Wohnhaus 12",
+            "datum": "2023-07-28",
+            "products": [
+                {
+                    "productId": "b6693472-9561-4e04-af44-0afee5411760",
+                    "orderAmount": 13
+                },
+                {
+                    "productId": "bd3ac241-0159-481c-9391-7e5366ada27f",
+                    "orderAmount": 10
+                },
+                {
+                    "productId": "1dba4c17-0e4a-44d6-b842-35baee96b94e",
+                    "orderAmount": 785
+                }
+            ]
+        },
+        {
+            "id": "74d57f2c-ad5a-4a97-a133-f8950799bb6c",
+            "name": "Max",
+            "wohnhaus": "Wohnhaus 14",
+            "datum": "2023-07-24",
+            "products": [
+                {
+                    "productId": "b6693472-9561-4e04-af44-0afee5411760",
+                    "orderAmount": 14
+                },
+                {
+                    "productId": "1dba4c17-0e4a-44d6-b842-35baee96b94e",
+                    "orderAmount": 5
+                }
+            ]
+        },
+        {
+            "id": "f65ccd94-62ef-453e-b30e-12d5b2d2112a",
+            "name": "Milian",
+            "wohnhaus": "Wohnhaus 234",
+            "datum": "2023-07-30",
+            "products": [
+                {
+                    "productId": "b6693472-9561-4e04-af44-0afee5411760",
+                    "orderAmount": 15
+                },
+                {
+                    "productId": "bd3ac241-0159-481c-9391-7e5366ada27f",
+                    "orderAmount": 15
+                }
+            ]
+        },
+        {
+            "id": "55da49d7-77c9-430d-80b1-44e179c59ff4",
+            "name": "asdf",
+            "wohnhaus": "Wohnhaus 1",
+            "datum": "2023-07-31",
+            "products": [
+                {
+                    "productId": "b6693472-9561-4e04-af44-0afee5411760",
+                    "orderAmount": 15
+                },
+                {
+                    "productId": "1dba4c17-0e4a-44d6-b842-35baee96b94e",
+                    "orderAmount": 6584984
                 }
             ]
         }

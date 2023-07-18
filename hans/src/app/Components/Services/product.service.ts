@@ -1,20 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-
-export interface Product {
-  id: string,
-  name: string,
-  type: string,
-  price: number,
-  manufacturer: string,
-  quantityType: string,
-}
-
-export interface OrderItem {
-  product: Product,
-  orderAmount: number
-}
+import { Product } from '../../../../../shared/types';;
 
 const port = 3000
 const url = `http://localhost:${port}/api`
@@ -27,6 +14,10 @@ export class ProductService {
 
   addProduct(newProduct: Product): Observable<Product[]>  {
     return this.http.post<Product[]>(`${url}/products`, newProduct);
+  }
+
+  getProductById(id: string): Observable<Product> {
+    return this.http.get<Product>(`${url}/products/${id}`)
   }
 
   updateProduct(updatedProduct: Product): Observable<Product[]> {
