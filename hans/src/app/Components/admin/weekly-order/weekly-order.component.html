@@ -20,7 +20,7 @@
         </tr>
       </ng-container>
       <tr>
-        <td>Total Kosten</td>
+        <td class="cost">Total Kosten</td>
         <td *ngFor="let wohnhaus of getUniqueWohnhauses()">
           <span class="cost">{{ getTotalCostForWohnhaus(wohnhaus) }} CHF</span>
         </td>
