@@ -1,31 +1,31 @@
 <div class="weekly-order-container">
+  <h2>Bestellungen der Woche: {{ weeklyOrder && weeklyOrder.length > 0 ? weeklyOrder[0].week : '' }}</h2>
+
   <table>
     <thead>
       <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Wohnhaus</th>
-        <th>Datum</th>
-        <th>Week</th>
-        <th>Products</th>
+        <th>Produkte</th>
+        <th *ngFor="let wohnhaus of getUniqueWohnhauses()">{{ wohnhaus }}</th>
+        <th>Kosten</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let order of weeklyOrder">
-        <td>{{ order.id }}</td>
-        <td>{{ order.name }}</td>
-        <td>{{ order.wohnhaus }}</td>
-        <td>{{ order.datum }}</td>
-        <td>{{ order.week }}</td>
-        <td>
-          <ul>
-            <li *ngFor="let product of order.products">
-              {{ product.product.name }} - {{ product.orderAmount }}
-            </li>
-          </ul>
+      <ng-container *ngFor="let product of productList">
+        <tr>
+          <td>{{ product.name }} / {{ product.quantityType }}</td>
+          <td *ngFor="let wohnhaus of getUniqueWohnhauses()">
+            {{ getOrderAmountForWohnhausProduct(wohnhaus, product.name) }}
+          </td>
+          <td class="cost">{{ getOrderCostForProduct(product) }} CHF</td>
+        </tr>
+      </ng-container>
+      <tr>
+        <td>Total Kosten</td>
+        <td *ngFor="let wohnhaus of getUniqueWohnhauses()">
+          <span class="cost">{{ getTotalCostForWohnhaus(wohnhaus) }} CHF</span>
         </td>
+        <td class="cost">{{ getTotalCostForAllProducts() }} CHF</td>
       </tr>
     </tbody>
   </table>
-
 </div>

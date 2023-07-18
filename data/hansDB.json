@@ -22,7 +22,7 @@
             "type": "Frucht",
             "price": 12,
             "manufacturer": "Migros",
-            "quantityType": "Kg"
+            "quantityType": "Stk"
         }
     ],
     "orders": [

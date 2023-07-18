@@ -54,6 +54,7 @@ app.post('/api/products', async (req, res) => {
 
 app.put('/api/products/:id', async (req, res) => {
     await db.push('/products[' + await db.getIndex('/products', req.params.id) + ']', req.body)
+    res.status(200).json(await db.getData('/products'));
 })
 
 
