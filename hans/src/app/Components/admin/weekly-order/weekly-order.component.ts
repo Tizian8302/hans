@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { ProductService } from '../../Services/product.service';
 import { OrderService } from '../../Services/order.service';
-import { FullWeeklyOrder, Product } from '../../../../../../shared/types';
+import { DBOrder, FullWeeklyOrder, Product, WeeklyOrder } from '../../../../../../shared/types';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-weekly-order',
@@ -17,16 +18,37 @@ export class WeeklyOrderComponent {
 
   constructor(
     private productService: ProductService,
-    private orderService: OrderService
-  ) {}
+    private orderService: OrderService,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
-    this.weeklyOrder = this.orderService.getWeeklyOrder();
+    this.route.queryParamMap.subscribe((params) => {
+      this.orderService.getOrders().subscribe((orders) => {
+        let week = params.get('week');
+        const weeklyOrder = this.getWeeklyOrders(orders).find(group => {
+          const [start, end] = group.week.split('-');
+          if (group.week == week) {
+            return true
+          } else {
+            return false
+          }
+        });
+
+        this.weeklyOrder = this.orderService.getFullWeeklyOrder(weeklyOrder as WeeklyOrder)
+      })
+
+    });
+
     this.productService.getAllProducts().subscribe((products) => {
       this.productList = products;
       this.manufacturers = this.getUniqueManufacturers();
       this.wohnhauses = this.getUniqueWohnhauses();
     });
+  }
+
+  getWeeklyOrders(orders: DBOrder[]): WeeklyOrder[] {
+    return this.orderService.getWeeklyOrders(orders)
   }
 
   getUniqueManufacturers(): string[] {
@@ -95,6 +117,10 @@ export class WeeklyOrderComponent {
   }
 
   getTotalCostForAllProducts(): number {
+    if (!this.weeklyOrder || this.weeklyOrder.length === 0) {
+      return 0;
+    }
+
     let totalCost = 0;
     this.weeklyOrder.forEach((order) => {
       order.products.forEach((orderProduct) => {

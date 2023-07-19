@@ -26,16 +26,7 @@ export class OrdersComponent {
   }
 
   navigateToWeeklyOrder(week: string): void {
-    const weeklyOrder = this.getWeeklyOrders().find(group => {
-      const [start, end] = group.week.split('-');
-      if (group.week == week) {
-        return true
-      } else {
-        return false
-      }
-    });
-    this.orderService.setWeeklyOrder(weeklyOrder as WeeklyOrder)
-    this.router.navigate(['/weeklyOrder'])
+    this.router.navigate(['/weeklyOrder'], {queryParams: {week: week, orders: this.orders}})
   }
   
 }
