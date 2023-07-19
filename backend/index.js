@@ -21,7 +21,7 @@ const port = 3000;
 app.use((0, cors_1.default)());
 app.use(express_1.default.static('public'));
 app.use(express_1.default.json());
-const db = new node_json_db_1.JsonDB(new node_json_db_1.Config("../data/hansDB", true, true, '/'));
+const db = new node_json_db_1.JsonDB(new node_json_db_1.Config("./data/hansDB", true, true, '/'));
 // Products
 app.get('/api/products', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     res.send(yield db.getData('/products'));

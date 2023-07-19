@@ -12,7 +12,7 @@ app.use(express.static('public'))
 app.use(express.json())
 
 
-const db = new JsonDB(new Config("../data/hansDB", true, true, '/'))
+const db = new JsonDB(new Config("./data/hansDB", true, true, '/'))
 
 // Products
 
