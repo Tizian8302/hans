@@ -9,33 +9,30 @@ import { DBOrder, Order, WeeklyOrder } from '../../../../../../shared/types';
   styleUrls: ['./orders.component.css']
 })
 export class OrdersComponent {
-  orders: DBOrder[] = []
+  orders: DBOrder[] = [];
 
   constructor(private orderService: OrderService, private router: Router) {}
 
   ngOnInit(): void {
-    this.orderService.getOrders().subscribe(orders => this.orders = orders)
+    this.orderService.getOrders().subscribe((orders) => {
+      this.orders = orders;
+    });
   }
 
   getWeeklyOrders(): WeeklyOrder[] {
-    return this.orderService.getWeeklyOrders(this.orders)
+    return this.orderService.getWeeklyOrders(this.orders);
   }
 
   deleteOrder(id: string) {
-    this.orderService.deleteOrder(id).subscribe(orders => this.orders = orders)
+    this.orderService.deleteOrder(id).subscribe((orders) => {
+      this.orders = orders;
+    });
   }
 
   navigateToWeeklyOrder(week: string): void {
-    const weeklyOrder = this.getWeeklyOrders().find(group => {
-      const [start, end] = group.week.split('-');
-      if (group.week == week) {
-        return true
-      } else {
-        return false
-      }
+    this.router.navigate(['/weeklyOrder'], {
+      queryParams: { week: week, orders: this.orders }
     });
-    this.orderService.setWeeklyOrder(weeklyOrder as WeeklyOrder)
-    this.router.navigate(['/weeklyOrder'])
   }
   
 }

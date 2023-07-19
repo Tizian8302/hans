@@ -1,33 +1,62 @@
-.orders-table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  .orders-table th,
-  .orders-table td {
-    padding: 8px;
-    text-align: left;
-    border-bottom: 1px solid #ccc;
-  }
-  
-  .orders-table th {
-    background-color: #f2f2f2;
-    font-weight: bold;
-  }
-  
-  .orders-table tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
-  }
-  
-  .orders-table tbody tr:hover {
-    background-color: #eaf6ff;
-    cursor: pointer;
-  }
-  
-  .page-heading {
-    font-size: 24px;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 20px;
-  }
-  
+.weekly-order-container {
+  margin: 20px;
+  font-family: Arial, sans-serif;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #ccc;
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ccc;
+}
+
+th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.cost {
+  font-weight: bold;
+}
+
+.total-kosten-row {
+  background-color: #eee;
+}
+
+h3 {
+  background-color: #f2f2f2;
+  padding: 10px;
+  margin: 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+div.total-kosten {
+  background-color: #f2f2f2;
+  padding: 10px;
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.total-kosten {
+  background-color: #f9f9f9;
+  border: 2px solid #ccc;
+  padding: 15px;
+  margin-top: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.total-kosten-price {
+  font-size: 28px;
+}

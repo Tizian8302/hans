@@ -1,31 +1,43 @@
 <div class="weekly-order-container">
-  <table>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Wohnhaus</th>
-        <th>Datum</th>
-        <th>Week</th>
-        <th>Products</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let order of weeklyOrder">
-        <td>{{ order.id }}</td>
-        <td>{{ order.name }}</td>
-        <td>{{ order.wohnhaus }}</td>
-        <td>{{ order.datum }}</td>
-        <td>{{ order.week }}</td>
-        <td>
-          <ul>
-            <li *ngFor="let product of order.products">
-              {{ product.product.name }} - {{ product.orderAmount }}
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <h2>Bestellungen der Woche: {{ weeklyOrder && weeklyOrder.length > 0 ? weeklyOrder[0].week : '' }}</h2>
 
+  <!-- Loop through each manufacturer -->
+  <ng-container *ngFor="let manufacturer of manufacturers">
+    <h3>{{ manufacturer }}</h3> <!-- Manufacturer as the section header -->
+
+    <table>
+      <thead>
+        <tr>
+          <th>Produkte</th>
+          <th *ngFor="let wohnhaus of wohnhauses">{{ wohnhaus }}</th>
+          <th>Gesamt</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Loop through products for the current manufacturer -->
+        <ng-container *ngFor="let product of getProductsByManufacturer(manufacturer)">
+          <tr>
+            <td>{{ product.name }} / {{ product.quantityType }}</td>
+            <td *ngFor="let wohnhaus of wohnhauses">
+              {{ getOrderAmountForWohnhausProduct(wohnhaus, product.name) }}
+            </td>
+            <td class="cost">{{ getOrderAmountForProduct(product) }} {{ product.quantityType }}</td>
+          </tr>
+        </ng-container>
+        <tr>
+          <td class="cost">Total Kosten</td>
+          <td *ngFor="let wohnhaus of wohnhauses">
+            <span class="cost">{{ getTotalCostForWohnhaus(wohnhaus) }} CHF</span>
+          </td>
+          <td class="cost">{{ getTotalCostForManufacturer(manufacturer) }} CHF</td> <!-- Manufacturer total cost -->
+        </tr>
+      </tbody>
+    </table>
+  </ng-container>
+
+  <!-- Display grand total for all products -->
+  <div class="total-kosten">
+    <h3>Gesamtkosten</h3>
+    <p>Total für alle Produkte: <span class="total-kosten-price">{{ getTotalCostForAllProducts() }} CHF</span></p>
+  </div>
 </div>

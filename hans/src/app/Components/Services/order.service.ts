@@ -11,7 +11,6 @@ const url = `http://localhost:${port}/api`
   providedIn: 'root'
 })
 export class OrderService {
-  weeklyOrder!: FullWeeklyOrder[]
 
   constructor(private http: HttpClient, private productService: ProductService) { }
 
@@ -59,7 +58,7 @@ export class OrderService {
     return weeklyOrders;
   }
 
-  setWeeklyOrder(weeklyOrder: WeeklyOrder) {
+  getFullWeeklyOrder(weeklyOrder: WeeklyOrder): FullWeeklyOrder[] {
     let fullWeeklyOrder: FullWeeklyOrder[] = []
 
     weeklyOrder.orders.forEach(order => {
@@ -92,11 +91,7 @@ export class OrderService {
 
     })
 
-    this.weeklyOrder = fullWeeklyOrder
-  }
-
-  getWeeklyOrder() {
-    return this.weeklyOrder
+    return fullWeeklyOrder
   }
 
   private getWeekStart(dateString: string): string {
