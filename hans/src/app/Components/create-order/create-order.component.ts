@@ -30,7 +30,7 @@ export class CreateOrderComponent {
       products: [] = []
     };
 
-    if (!this.authService.login(this.passwort, newOrder)) {
+    if (!this.authService.login(this.passwort)) {
       this._matSnackBar.open("Dieses Passwort ist nicht korrekt!", "X", {
         duration: 5000
       })
@@ -38,7 +38,7 @@ export class CreateOrderComponent {
     }
 
     this.orderService.createOrder(newOrder).subscribe(order => {
-      this.router.navigate(['/addProducts']);
+      this.router.navigate(['/addProducts'], {queryParams: {id: order.id}});
     });
   }
 

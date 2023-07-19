@@ -4,6 +4,8 @@ import { ProductService } from '../Services/product.service';
 import { OrderService } from '../Services/order.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { OrderItem } from '../../../../../shared/types';
+import { ActivatedRoute } from '@angular/router';
+import { HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-add-products',
@@ -17,13 +19,21 @@ export class AddProductsComponent {
   selectedProductIndices: number[] = [];
 
   constructor(
+    private route: ActivatedRoute,
     private orderService: OrderService,
     private authService: AuthService,
     private productService: ProductService,
     private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
-    this.order = this.authService.getOrder();
+    
+    let foundOrder
+    this.route.queryParamMap.subscribe((params) => {
+      this.orderService.getOrders().subscribe((orders) => {
+        foundOrder = orders.find(order => order.id == params.get('id'))
+        if(foundOrder) this.order = foundOrder
+      });
+    })
 
     this.productService.getAllProducts().subscribe(products => {
       this.allProducts = products.map(product => ({
