@@ -3,9 +3,9 @@ import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { WeeklyOrder, OrderItem, Order, Product, DBOrder, FullWeeklyOrder } from '../../../../../shared/types';
 import { ProductService } from './product.service';
+import { environment } from 'src/environments/environment';
 
-const port = 3000
-const url = `http://localhost:${port}/api`
+const url = environment.apiUrl
 
 @Injectable({
   providedIn: 'root'

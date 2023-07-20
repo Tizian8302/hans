@@ -1,10 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Product } from '../../../../../shared/types';;
+import { Product } from '../../../../../shared/types';import { environment } from 'src/environments/environment';
 
-const port = 3000
-const url = `http://localhost:${port}/api`
+const url = environment.apiUrl
 
 @Injectable({
   providedIn: 'root'
