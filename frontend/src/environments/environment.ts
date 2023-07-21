@@ -1,5 +1,5 @@
 export const environment = {
     password: 'Hans8302',
     adminPassword: "AdminHans8302",
-    apiUrl: "https://fair-blue-puffer-coat.cyclic.app/api/"
+    apiUrl: "https://hans-7zzrg3kaba-oa.a.run.app/api"
 };
