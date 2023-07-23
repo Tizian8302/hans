@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ProductComponent } from './Components/product/product.component';
+import { ProductComponent } from './Components/admin/product/product.component';
 import { HttpClientModule } from  '@angular/common/http';
 import { ProductService } from './Components/Services/product.service';
 import { CreateOrderComponent } from './Components/create-order/create-order.component';

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../Services/product.service';
-import { Product } from '../../../../../shared/types';
+import { ProductService } from '../../Services/product.service';
+import { Product } from '../../../../../../shared/types';
 
 @Component({
   selector: 'app-product',
@@ -37,7 +37,7 @@ export class ProductComponent implements OnInit {
   }
   
   addProduct(): void {
-    if (this.newProduct.name && this.newProduct.type &&this.newProduct.price && this.newProduct.manufacturer && this.newProduct.quantityType) {
+    if (this.newProduct.name && this.newProduct.type && this.newProduct.price && this.newProduct.manufacturer && this.newProduct.quantityType) {
       this.productService.addProduct(this.newProduct).subscribe((products) => {this.products = products})
       this.clearNewProduct();
     }
