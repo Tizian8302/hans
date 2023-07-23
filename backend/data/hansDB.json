@@ -123,22 +123,6 @@
             ]
         },
         {
-            "id": "f65ccd94-62ef-453e-b30e-12d5b2d2112a",
-            "name": "Milian",
-            "wohnhaus": "Wohnhaus 234",
-            "datum": "2023-07-30",
-            "products": [
-                {
-                    "productId": "b6693472-9561-4e04-af44-0afee5411760",
-                    "orderAmount": 15
-                },
-                {
-                    "productId": "bd3ac241-0159-481c-9391-7e5366ada27f",
-                    "orderAmount": 15
-                }
-            ]
-        },
-        {
             "id": "55da49d7-77c9-430d-80b1-44e179c59ff4",
             "name": "asdf",
             "wohnhaus": "Wohnhaus 1",

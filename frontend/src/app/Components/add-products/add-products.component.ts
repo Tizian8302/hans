@@ -21,7 +21,6 @@ export class AddProductsComponent {
   constructor(
     private route: ActivatedRoute,
     private orderService: OrderService,
-    private authService: AuthService,
     private productService: ProductService,
     private _snackBar: MatSnackBar) { }
 

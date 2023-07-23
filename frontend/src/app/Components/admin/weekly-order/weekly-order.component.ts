@@ -88,20 +88,20 @@ export class WeeklyOrderComponent {
     return totalAmo;
   }
 
-  getTotalCostForWohnhaus(wohnhaus: string): number {
-    let wohnhausCost = 0;
+  getTotalCostForManufacturerAndWohnhaus(manufacturer: string, wohnhaus: string): number {
+    let totalCost = 0;
     this.weeklyOrder.forEach((order) => {
       if (order.wohnhaus === wohnhaus) {
         order.products.forEach((orderProduct) => {
           const product = this.productList.find((p) => p.name === orderProduct.product.name);
-          if (product) {
-            wohnhausCost += orderProduct.orderAmount * product.price;
+          if (product && product.manufacturer === manufacturer) {
+            totalCost += orderProduct.orderAmount * product.price;
           }
         });
       }
     });
-    return wohnhausCost;
-  }
+    return totalCost;
+  }  
 
   getTotalCostForManufacturer(manufacturer: string): number {
     let manufacturerCost = 0;

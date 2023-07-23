@@ -27,7 +27,7 @@
         <tr>
           <td class="cost">Total Kosten</td>
           <td *ngFor="let wohnhaus of wohnhauses">
-            <span class="cost">{{ getTotalCostForWohnhaus(wohnhaus) }} CHF</span>
+            <span class="cost">{{ getTotalCostForManufacturerAndWohnhaus(manufacturer, wohnhaus) }} CHF</span>
           </td>
           <td class="cost">{{ getTotalCostForManufacturer(manufacturer) }} CHF</td> <!-- Manufacturer total cost -->
         </tr>
