@@ -37,9 +37,21 @@ export class CreateOrderComponent {
       return
     }
 
-    this.orderService.createOrder(newOrder).subscribe(order => {
-      this.router.navigate(['/addProducts'], {queryParams: {id: order.id}});
-    });
+    if (newOrder) {
+      this.orderService.isWohnhausInWeeklyOrder(newOrder).subscribe(result => {
+        if (result) {
+          // An order for the specific wohnhaus exists in the same week.
+          this._matSnackBar.open('Für dieses Wohnhaus wurde in dieser Woche bereits eine Bestellung erstellt.', 'Close');
+        } else {
+          // The order for the specific wohnhaus doesn't exist in the same week, create the order.
+          this.orderService.createOrder(newOrder).subscribe(order => {
+            this.router.navigate(['/addProducts'], { queryParams: { id: order.id } });
+          });
+        }
+      });
+    } else {
+      this._matSnackBar.open('Ungültige Bestellungsdaten.', 'Close');
+    }    
   }
 
 }

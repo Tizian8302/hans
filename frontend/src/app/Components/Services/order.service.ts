@@ -18,6 +18,22 @@ export class OrderService {
     return this.http.post<Order>(`${url}/orders`, newOrder);
   }
 
+  isWohnhausInWeeklyOrder(newOrder: { id: string, name: string; wohnhaus: string; datum: string; }): Observable<boolean> {
+    return this.getOrders().pipe(
+      map(orders => this.getWeeklyOrders(orders)),
+      map(weeklyOrders => {
+        const week = this.getWeekStart(newOrder.datum) + '-' + this.getWeekEnd(newOrder.datum);
+        const weeklyOrder = weeklyOrders.find(group => group.week === week);
+  
+        if (weeklyOrder) {
+          return weeklyOrder.orders.some(order => order.wohnhaus === newOrder.wohnhaus);
+        }
+  
+        return false;
+      })
+    );
+  }
+
   getOrders(): Observable<DBOrder[]> {
     return this.http.get<DBOrder[]>(`${url}/orders`).pipe(
       map(orders => {
