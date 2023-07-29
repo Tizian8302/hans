@@ -3,6 +3,7 @@ import { ProductService } from '../../Services/product.service';
 import { OrderService } from '../../Services/order.service';
 import { DBOrder, FullWeeklyOrder, Product, WeeklyOrder } from '../../../../../../shared/types';
 import { ActivatedRoute } from '@angular/router';
+import { forkJoin, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-weekly-order',
@@ -23,24 +24,18 @@ export class WeeklyOrderComponent {
   ) { }
 
   ngOnInit(): void {
-    this.route.queryParamMap.subscribe((params) => {
-      this.orderService.getOrders().subscribe((orders) => {
-        let week = params.get('week');
-        const weeklyOrder = this.getWeeklyOrders(orders).find(group => {
-          const [start, end] = group.week.split('-');
-          if (group.week == week) {
-            return true
-          } else {
-            return false
-          }
-        });
-
-        this.weeklyOrder = this.orderService.getFullWeeklyOrder(weeklyOrder as WeeklyOrder)
+    this.route.queryParamMap.pipe(
+      switchMap(params => {
+        return forkJoin([
+          this.orderService.getOrders(),
+          this.productService.getAllProducts(),
+        ]);
       })
-
-    });
-
-    this.productService.getAllProducts().subscribe((products) => {
+    ).subscribe(([orders, products]) => {
+      let week = this.route.snapshot.queryParamMap.get('week');
+      const weeklyOrder = this.getWeeklyOrders(orders).find(group => group.week === week);
+  
+      this.weeklyOrder = this.orderService.getFullWeeklyOrder(weeklyOrder as WeeklyOrder);
       this.productList = products;
       this.manufacturers = this.getUniqueManufacturers();
       this.wohnhauses = this.getUniqueWohnhauses();
