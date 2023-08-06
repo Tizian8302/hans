@@ -84,3 +84,11 @@ h2 {
 .button-container {
   margin-top: 20px;
 }
+
+.products-table tr.selected td {
+  background-color: #cee8ff !important;
+}
+
+.products-table tbody tr:nth-child(even).selected td {
+  background-color: #cbe7ff !important;
+}

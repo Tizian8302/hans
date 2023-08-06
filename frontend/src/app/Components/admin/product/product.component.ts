@@ -19,6 +19,8 @@ export class ProductComponent implements OnInit {
     type: ''
   };
 
+  selectedProductIndices: number[] = []
+
   constructor(private productService: ProductService) { }
 
   ngOnInit(): void {
@@ -43,8 +45,16 @@ export class ProductComponent implements OnInit {
     }
   }
   
-  updateProduct(product: Product): void {
+  updateProduct(product: Product, index: number): void {
     this.productService.updateProduct(product).subscribe((products) => {this.products = products})
+
+    this.selectedProductIndices.push(index)
+    setTimeout(() => {
+      const highlightIndex = this.selectedProductIndices.indexOf(index);
+      if (highlightIndex !== -1) {
+        this.selectedProductIndices.splice(highlightIndex, 1);
+      }
+    }, 3000);
   }
 
   deleteProductByObject(product: Product) {
@@ -60,6 +70,10 @@ export class ProductComponent implements OnInit {
   deleteProduct(index: number): void {
     const product = this.products[index];
     this.deleteProductByObject(product)
+  }
+
+  isRowSelected(index: number): boolean {
+    return this.selectedProductIndices.includes(index);
   }
 
   clearNewProduct(): void {
