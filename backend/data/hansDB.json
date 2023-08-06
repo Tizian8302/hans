@@ -121,22 +121,6 @@
                     "orderAmount": 5
                 }
             ]
-        },
-        {
-            "id": "55da49d7-77c9-430d-80b1-44e179c59ff4",
-            "name": "asdf",
-            "wohnhaus": "Wohnhaus 1",
-            "datum": "2023-07-31",
-            "products": [
-                {
-                    "productId": "b6693472-9561-4e04-af44-0afee5411760",
-                    "orderAmount": 15
-                },
-                {
-                    "productId": "1dba4c17-0e4a-44d6-b842-35baee96b94e",
-                    "orderAmount": 6584984
-                }
-            ]
         }
     ]
 }

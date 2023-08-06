@@ -13,14 +13,14 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let product of products; let i = index">
+            <tr *ngFor="let product of products; let i = index" [class.selected]="isRowSelected(i)">
                 <td><input type="text" [(ngModel)]="product.name"></td>
                 <td><input type="text" [(ngModel)]="product.type"></td>
                 <td><input type="text" [(ngModel)]="product.price"></td>
                 <td><input type="text" [(ngModel)]="product.manufacturer"></td>
                 <td><input type="text" [(ngModel)]="product.quantityType"></td>
                 <td>
-                    <button class="success-button" (click)="updateProduct(product)">Speichern</button>
+                    <button class="success-button" (click)="updateProduct(product, i)">Speichern</button>
                     <button class="delete-button" (click)="deleteProduct(i)">Löschen</button>
                 </td>
             </tr>
