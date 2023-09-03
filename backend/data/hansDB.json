@@ -23,6 +23,118 @@
             "price": 12,
             "manufacturer": "Migros",
             "quantityType": "Stk"
+        },
+        {
+            "id": "08802d72-b43c-4562-8fe8-2f797dd744fd",
+            "name": "Aceto Balsamico",
+            "type": "Grundnahrungsmittel",
+            "price": 1,
+            "manufacturer": "SAVIVA",
+            "quantityType": "Fl"
+        },
+        {
+            "id": "32881858-aa46-430f-a372-816f39da441b",
+            "name": "Alkoholfreies Bier",
+            "type": "Getränk",
+            "price": 1,
+            "manufacturer": "SAVIVA",
+            "quantityType": "12er"
+        },
+        {
+            "id": "fccbdddd-1b21-46ec-9cc2-3576347a57e6",
+            "name": "Apfelessig",
+            "type": "Grundnahrungsmittel",
+            "price": 1,
+            "manufacturer": "SAVIVA",
+            "quantityType": "Fl"
+        },
+        {
+            "id": "dc9f9c89-9706-4f2d-824f-8d17ba674161",
+            "name": "Apfelmus",
+            "type": "Grundnahrungsmittel",
+            "price": 1,
+            "manufacturer": "SAVIVA",
+            "quantityType": "50g"
+        },
+        {
+            "id": "4766adf9-c410-4870-aff6-3bac4aa50998",
+            "name": "Backpulver",
+            "type": "Grundnahrungsmittel",
+            "price": 1,
+            "manufacturer": "SAVIVA",
+            "quantityType": "Pkg"
+        },
+        {
+            "id": "e7620173-f54e-451e-8a84-b4c76f0a11ec",
+            "name": "Butter Gützli",
+            "type": "Gebäck",
+            "price": 1,
+            "manufacturer": "SAVIVA",
+            "quantityType": "Pkg"
+        },
+        {
+            "id": "fe81d2a0-2cf4-4fee-b397-f773fd45b9fa",
+            "name": "Caotina",
+            "type": "Grundnahrungsmittel",
+            "price": 1,
+            "manufacturer": "SAVIVA",
+            "quantityType": "Pkg"
+        },
+        {
+            "id": "6aca8cf9-3ed4-417f-ba95-74a265a2e1ce",
+            "name": "Chips Paprika",
+            "type": "Snack",
+            "price": 1,
+            "manufacturer": "SAVIVA",
+            "quantityType": "Pkg"
+        },
+        {
+            "id": "ff58fd9e-0957-4306-a0e7-855f0187d03a",
+            "name": "Chips Natur",
+            "type": "Snack",
+            "price": 1,
+            "manufacturer": "SAVIVA",
+            "quantityType": "Pkg"
+        },
+        {
+            "id": "84bec49f-a06b-4b15-979f-b9a61ca2c415",
+            "name": "Coca Cola 1l",
+            "type": "Getränk",
+            "price": 1,
+            "manufacturer": "SAVIVA",
+            "quantityType": "6er"
+        },
+        {
+            "id": "5069cde4-852c-4c6f-b93b-04dee4ad02b2",
+            "name": "Coca Cola Zero 1l",
+            "type": "Getränk",
+            "price": 1,
+            "manufacturer": "SAVIVA",
+            "quantityType": "6er"
+        },
+        {
+            "id": "ca9e8c36-dd7c-4e6f-868d-cdf5420c3645",
+            "name": "Darvida",
+            "type": "Gebäck",
+            "price": 1,
+            "manufacturer": "SAVIVA",
+            "quantityType": "Kart"
+        },
+        {
+            "id": "c5c7ed58-0d25-42f3-aba5-91a75c2f1cec",
+            "name": "Flaschen Bier 3.5dl",
+            "type": "Alk Getränk",
+            "price": 1,
+            "manufacturer": "SAVIVA",
+            "quantityType": "10er"
+        },
+        {
+            "id": "b145b092-0022-4902-a140-ae5468e6f175",
+            "name": "French Dressing",
+            "type": "Grundnahrungsmittel",
+            "price": 1,
+            "manufacturer": "SAVIVA",
+            "quantityType": "Lt"
         }
     ],
     "orders": [
@@ -119,6 +231,18 @@
                 {
                     "productId": "1dba4c17-0e4a-44d6-b842-35baee96b94e",
                     "orderAmount": 5
+                }
+            ]
+        },
+        {
+            "id": "7ec3bfca-38e5-40f6-9007-5be53358f08c",
+            "name": "asdf",
+            "wohnhaus": "Wohnhaus 10",
+            "datum": "2023-07-25",
+            "products": [
+                {
+                    "productId": "08802d72-b43c-4562-8fe8-2f797dd744fd",
+                    "orderAmount": 12
                 }
             ]
         }
