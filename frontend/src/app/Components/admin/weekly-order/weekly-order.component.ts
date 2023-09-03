@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../Services/product.service';
 import { OrderService } from '../../Services/order.service';
 import { DBOrder, FullWeeklyOrder, Product, WeeklyOrder } from '../../../../../../shared/types';
@@ -10,7 +10,7 @@ import { forkJoin, switchMap } from 'rxjs';
   templateUrl: './weekly-order.component.html',
   styleUrls: ['./weekly-order.component.css']
 })
-export class WeeklyOrderComponent {
+export class WeeklyOrderComponent implements OnInit {
 
   weeklyOrder!: FullWeeklyOrder[];
   productList: Product[] = [];
@@ -52,7 +52,17 @@ export class WeeklyOrderComponent {
   }
 
   getProductsByManufacturer(manufacturer: string): Product[] {
-    return this.productList.filter((product) => product.manufacturer === manufacturer);
+    const productsWithOrders = this.productList.filter((product) => {
+      return this.weeklyOrder.some((order) => {
+        return order.products.some(
+          (orderProduct) =>
+            orderProduct.product.manufacturer === manufacturer &&
+            orderProduct.product.name === product.name
+        );
+      });
+    });
+
+    return productsWithOrders;
   }
 
   getUniqueWohnhauses(): string[] {
